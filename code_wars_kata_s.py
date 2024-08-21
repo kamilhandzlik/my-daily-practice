@@ -137,3 +137,87 @@ def expressions_matter(a, b, c):
         a * (b + c),
         (a * b) + c
     )
+
+
+#########################################################################################################
+##################################            5             #############################################
+#########################################################################################################
+
+
+"""The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+
+Examples
+"din"      =>  "((("
+"recede"   =>  "()()()"
+"Success"  =>  ")())())"
+"(( @"     =>  "))((" 
+Notes
+Assertion messages may be unclear about what they display in some languages. If you read "...It Should encode XXX", the "XXX" is the expected result, not the input!
+
+"""
+
+def duplicate_encode(word):
+    word = word.lower()
+    result = ""
+    for char in word:
+        if word.count(char) > 1:
+            result += ')'
+        else:
+            result += '('
+    return result
+
+
+
+#########################################################################################################
+##################################            6             #############################################
+#########################################################################################################
+
+"""What if we need the length of the words separated by a space to be added at the end of that same word and have it returned as an array?
+
+Example(Input --> Output)
+
+"apple ban" --> ["apple 5", "ban 3"]
+"you will win" -->["you 3", "will 4", "win 3"]
+Your task is to write a function that takes a String and returns an Array/list with the length of each word added to each element .
+
+Note: String will have at least one element; words will always be separated by a space.
+"""
+
+
+def add_length(str_):
+    sentence = str_.split(' ')
+    result = []
+
+    for word in sentence:
+        length = len(word)
+        with_length = f'{word} {length}'
+        result.append(with_length)
+
+    return result
+
+
+#########################################################################################################
+##################################            7             #############################################
+#########################################################################################################
+
+"""Issue
+Looks like some hoodlum plumber and his brother has been running around and damaging your stages again.
+
+The pipes connecting your level's stages together need to be fixed before you receive any more complaints.
+
+The pipes are correct when each pipe after the first is 1 more than the previous one.
+
+Task
+Given a list of unique numbers sorted in ascending order, return a new list so that the values increment by 1 for each index from the minimum value up to the maximum value (both included).
+
+Example
+Input:  1,3,5,6,7,8 Output: 1,2,3,4,5,6,7,8
+
+"""
+
+def pipe_fix(nums):
+    return list(range(nums[0], nums[-1] + 1))
+
+
+
+
