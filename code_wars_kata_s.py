@@ -375,8 +375,79 @@ In languages with no distinct character data type, the second argument will be a
 def str_count(strng, letter):
     return strng.count(letter)
 
+
 #########################################################################################################
 ##################################            13            #############################################
 #########################################################################################################
 
+"""The Story:
+Bob is working as a bus driver. However, he has become extremely popular amongst the city's residents. With so many passengers wanting to get aboard his bus, he sometimes has to face the problem of not enough space left on the bus! He wants you to write a simple program telling him if he will be able to fit all the passengers.
 
+Task Overview:
+You have to write a function that accepts three parameters:
+
+cap is the amount of people the bus can hold excluding the driver.
+on is the number of people on the bus excluding the driver.
+wait is the number of people waiting to get on to the bus excluding the driver.
+If there is enough space, return 0, and if there isn't, return the number of passengers he can't take.
+
+Usage Examples:
+cap = 10, on = 5, wait = 5 --> 0 # He can fit all 5 passengers
+cap = 100, on = 60, wait = 50 --> 10 # He can't fit 10 of the 50 waiting"""
+
+
+# solution 1
+def enough(cap, on, wait):
+    if (wait + on) > cap:
+        return (on + wait) - cap
+    else:
+        return 0
+
+
+# Solution 2
+
+def enough(cap, on, wait):
+    return (on + wait) - cap if (wait + on) > cap else 0
+
+#solution 3
+def enough(cap, on, wait):
+    return max(0, wait - (cap - on))
+
+#########################################################################################################
+##################################            14            #############################################
+#########################################################################################################
+"""Create a function finalGrade, which calculates the final grade of a student depending on two parameters: a grade for the exam and a number of completed projects.
+
+This function should take two arguments: exam - grade for exam (from 0 to 100); projects - number of completed projects (from 0 and above);
+
+This function should return a number (final grade). There are four types of final grades:
+
+100, if a grade for the exam is more than 90 or if a number of completed projects more than 10.
+90, if a grade for the exam is more than 75 and if a number of completed projects is minimum 5.
+75, if a grade for the exam is more than 50 and if a number of completed projects is minimum 2.
+0, in other cases
+Examples(Inputs-->Output):
+
+100, 12 --> 100
+99, 0 --> 100
+10, 15 --> 100
+
+85, 5 --> 90
+
+55, 3 --> 75
+
+55, 0 --> 0
+20, 2 --> 0
+*Use Comparison and Logical Operators."""
+
+
+
+def final_grade(exam, projects):
+    if exam > 90 or projects > 10:
+        return 100
+    elif exam > 75 and projects >= 5:
+        return 90
+    elif exam > 50 and projects >= 2:
+        return 75
+    else:
+        return 0
