@@ -416,6 +416,7 @@ def enough(cap, on, wait):
 #########################################################################################################
 ##################################            14            #############################################
 #########################################################################################################
+
 """Create a function finalGrade, which calculates the final grade of a student depending on two parameters: a grade for the exam and a number of completed projects.
 
 This function should take two arguments: exam - grade for exam (from 0 to 100); projects - number of completed projects (from 0 and above);
@@ -451,3 +452,138 @@ def final_grade(exam, projects):
         return 75
     else:
         return 0
+
+
+
+#########################################################################################################
+##################################            15            #############################################
+#########################################################################################################
+
+"""This function should test if the factor is a factor of base.
+
+Return true if it is a factor or false if it is not.
+
+About factors
+Factors are numbers you can multiply together to get another number.
+
+2 and 3 are factors of 6 because: 2 * 3 = 6
+
+You can find a factor by dividing numbers. If the remainder is 0 then the number is a factor.
+You can use the mod operator (%) in most languages to check for a remainder
+For example 2 is not a factor of 7 because: 7 % 2 = 1
+
+Note: base is a non-negative number, factor is a positive number."""
+
+def check_for_factor(base, factor):
+    if factor <= 0:
+        raise ValueError("Factor should be a positive number.")
+    return base % factor == 0
+
+#########################################################################################################
+##################################            16            #############################################
+#########################################################################################################
+"""Find Mean
+Find the mean (average) of a list of numbers in an array.
+
+Information
+To find the mean (average) of a set of numbers add all of the numbers together and divide by the number of values in the list.
+
+For an example list of 1, 3, 5, 7
+
+1. Add all of the numbers
+
+1+3+5+7 = 16
+2. Divide by the number of values in the list. In this example there are 4 numbers in the list.
+
+16/4 = 4
+3. The mean (or average) of this list is 4"""
+
+
+def find_average(nums):
+    if not nums:
+        return 0
+    return sum(nums) / len(nums)
+
+
+
+
+
+#########################################################################################################
+##################################            17            #############################################
+#########################################################################################################
+"""The number 
+89
+89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata. What's the use of saying "Eureka"? Because this sum gives the same number: 
+89
+=
+8
+1
++
+9
+2
+89=8 
+1
+ +9 
+2
+ 
+
+The next number in having this property is 
+135
+135:
+
+See this property again: 
+135
+=
+1
+1
++
+3
+2
++
+5
+3
+135=1 
+1
+ +3 
+2
+ +5 
+3
+ 
+
+Task
+We need a function to collect these numbers, that may receive two integers 
+a
+a, 
+b
+b that defines the range 
+[
+a
+,
+b
+]
+[a,b] (inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+
+Examples
+Let's see some cases (input -> output):
+
+1, 10  --> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+1, 100 --> [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+If there are no numbers of this kind in the range 
+[
+a
+,
+b
+]
+[a,b] the function should output an empty list.
+
+90, 100 --> []
+Enjoy it!!"""
+
+
+def sum_dig_pow(a, b):
+    def is_eureka_number(n):
+        digits = [int(d) for d in str(n)]
+        return n == sum(digit ** (i + 1) for i, digit in enumerate(digits))
+
+    return [n for n in range(a, b + 1) if is_eureka_number(n)]
+
