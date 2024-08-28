@@ -511,6 +511,7 @@ def find_average(nums):
 #########################################################################################################
 ##################################            17            #############################################
 #########################################################################################################
+
 """The number 
 89
 89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata. What's the use of saying "Eureka"? Because this sum gives the same number: 
@@ -587,3 +588,88 @@ def sum_dig_pow(a, b):
 
     return [n for n in range(a, b + 1) if is_eureka_number(n)]
 
+
+
+#########################################################################################################
+##################################            18            #############################################
+#########################################################################################################
+
+
+"""Take an array and remove every second element from the array. Always keep the first element and start removing with the next element.
+
+Example:
+["Keep", "Remove", "Keep", "Remove", "Keep", ...] --> ["Keep", "Keep", "Keep", ...]
+
+None of the arrays will be empty, so you don't have to worry about that!"""
+
+
+# solution 1
+def remove_every_other(my_list):
+    return my_list[::2]
+
+
+# solution for fun
+def remove_every_other(my_list):
+    r = []
+    for i in range(len(my_list)):
+        if i % 2 == 0:
+            r.append(my_list[i])
+    return r
+
+
+#########################################################################################################
+##################################            19            #############################################
+#########################################################################################################
+
+"""The wide-mouth frog is particularly interested in the eating habits of other creatures.
+
+He just can't stop asking the creatures he encounters what they like to eat. But, then he meets the alligator who just 
+LOVES to eat wide-mouthed frogs!
+
+When he meets the alligator, it then makes a tiny mouth.
+
+Your goal in this kata is to create complete the mouth_size method this method takes one argument animal which corresponds 
+to the animal encountered by the frog.
+If this one is an alligator (case-insensitive) return small otherwise return wide."""
+
+# solution 1
+
+def mouth_size(animal):
+    if animal.lower() == "alligator":
+        return 'small'
+    else:
+        return 'wide'
+
+# solution 2
+def mouth_size(animal):
+    return 'small' if animal.lower() == "alligator" else 'wide'
+
+#########################################################################################################
+##################################            20            #############################################
+#########################################################################################################
+
+"""You are given two arrays a1 and a2 of strings. Each string is composed with letters from a to z. Let x be any string in the first array and y be any string in the second array.
+
+Find max(abs(length(x) − length(y)))
+
+If a1 and/or a2 are empty return -1 in each language except in Haskell (F#) where you will return Nothing (None).
+
+Example:
+a1 = ["hoqq", "bbllkw", "oox", "ejjuyyy", "plmiis", "xxxzgpsssa", "xxwwkktt", "znnnnfqknaz", "qqquuhii", "dvvvwz"]
+a2 = ["cccooommaaqqoxii", "gggqaffhhh", "tttoowwwmmww"]
+mxdiflg(a1, a2) --> 13
+Bash note:
+input : 2 strings with substrings separated by ,
+output: number as a string"""
+
+def mxdiflg(a1, a2):
+    if not a1 or not a2:  # If either array is empty
+        return -1
+
+    max_len_a1 = max(len(x) for x in a1)  # Maximum length in a1
+    min_len_a1 = min(len(x) for x in a1)  # Minimum length in a1
+    max_len_a2 = max(len(x) for x in a2)  # Maximum length in a2
+    min_len_a2 = min(len(x) for x in a2)  # Minimum length in a2
+
+    # Calculate the maximum of the absolute differences
+    return max(abs(max_len_a1 - min_len_a2), abs(max_len_a2 - min_len_a1))
