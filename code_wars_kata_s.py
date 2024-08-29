@@ -673,3 +673,144 @@ def mxdiflg(a1, a2):
 
     # Calculate the maximum of the absolute differences
     return max(abs(max_len_a1 - min_len_a2), abs(max_len_a2 - min_len_a1))
+
+
+
+
+#########################################################################################################
+##################################            21            #############################################
+#########################################################################################################
+
+
+"""Exclusive "or" (xor) Logical Operator
+Overview
+In some scripting languages like PHP, there exists a logical operator (e.g. &&, ||, and, or, etc.) called the "Exclusive Or" (hence the name of this Kata). The exclusive or evaluates two booleans. It then returns true if exactly one of the two expressions are true, false otherwise. For example:
+
+false xor false == false // since both are false
+true xor false == true // exactly one of the two expressions are true
+false xor true == true // exactly one of the two expressions are true
+true xor true == false // Both are true.  "xor" only returns true if EXACTLY one of the two expressions evaluate to true.
+Task
+Since we cannot define keywords in Javascript (well, at least I don't know how to do it), your task is to define a function xor(a, b) where a and b are the two expressions to be evaluated. Your xor function should have the behaviour described above, returning true if exactly one of the two expressions evaluate to true, false otherwise."""
+
+def xor(a, b):
+    return (a and not b) or (not a and b)
+
+#########################################################################################################
+##################################            22            #############################################
+#########################################################################################################
+
+"""Create a function that returns the name of the winner in a fight between two fighters.
+
+Each fighter takes turns attacking the other and whoever kills the other first is victorious. Death is defined as having health <= 0.
+
+Each fighter will be a Fighter object/instance. See the Fighter class below in your chosen language.
+
+Both health and damagePerAttack (damage_per_attack for python) will be integers larger than 0. You can mutate the Fighter objects.
+
+Your function also receives a third argument, a string, with the name of the fighter that attacks first.
+
+Example:
+  declare_winner(Fighter("Lew", 10, 2), Fighter("Harry", 5, 4), "Lew") => "Lew"
+  
+  Lew attacks Harry; Harry now has 3 health.
+  Harry attacks Lew; Lew now has 6 health.
+  Lew attacks Harry; Harry now has 1 health.
+  Harry attacks Lew; Lew now has 2 health.
+  Lew attacks Harry: Harry now has -1 health and is dead. Lew wins.
+class Fighter(object):
+    def __init__(self, name, health, damage_per_attack):
+        self.name = name
+        self.health = health
+        self.damage_per_attack = damage_per_attack
+        
+    def __str__(self): return "Fighter({}, {}, {})".format(self.name, self.health, self.damage_per_attack)
+    __repr__=__str__"""
+
+
+class Fighter(object):
+    def __init__(self, name, health, damage_per_attack):
+        self.name = name
+        self.health = health
+        self.damage_per_attack = damage_per_attack
+
+    def __str__(self): return "Fighter({}, {}, {})".format(self.name, self.health, self.damage_per_attack)
+
+    __repr__ = __str__
+
+# solution1
+def declare_winner(fighter1, fighter2, first_attacker):
+    attacker = fighter1 if fighter1.name == first_attacker else fighter2
+    defender = fighter2 if attacker == fighter1 else fighter1
+
+
+    while fighter1.health > 0 and fighter2.health > 0:
+        defender.health -= attacker.damage_per_attack
+
+        if defender.health <= 0:
+            return attacker.name
+
+        attacker, defender = defender, attacker
+
+    return attacker.name
+
+#########################################################################################################
+##################################            23            #############################################
+#########################################################################################################
+
+
+"""Your boss decided to save money by purchasing some cut-rate optical character recognition software for scanning
+ in the text of old novels to your database. At first it seems to capture words okay, but you quickly notice that it throws
+  in a lot of numbers at random places in the text.
+
+Examples (input -> output)
+'! !'                 -> '! !'
+'123456789'           -> ''
+'This looks5 grea8t!' -> 'This looks great!'
+Your harried co-workers are looking to you for a solution to take this garbled text and remove all of the numbers.
+ Your program will take in a string and clean out all numeric characters, and return a string with spacing and special characters
+  ~#$%^&!@*():;"'.,? all intact."""
+
+# solution 1
+def string_clean(s):
+    cleared_string = ""
+
+    for char in s:
+        if char not in "0123456789":
+            cleared_string += char
+
+    return cleared_string
+
+# solution 2
+def string_clean(s):
+    return ''.join(x for x in s if not x.isdigit())
+
+
+
+#########################################################################################################
+##################################            24            #############################################
+#########################################################################################################
+
+"""Scenario
+Several people are standing in a row divided into two teams.
+The first person goes into team 1, the second goes into team 2, the third goes into team 1, and so on.
+
+Task
+Given an array of positive integers (the weights of the people), return a new array/tuple of two integers, where the first one is the total weight of team 1, and the second one is the total weight of team 2.
+
+Notes
+Array size is at least 1.
+All numbers will be positive"""
+
+
+def row_weights(array):
+    team1 = 0
+    team2 = 0
+
+    for i, weight in enumerate(array):
+        if i % 2 == 0:
+            team1 += weight
+        else:
+            team2 += weight
+
+    return (team1, team2)
