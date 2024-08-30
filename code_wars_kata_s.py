@@ -409,9 +409,11 @@ def enough(cap, on, wait):
 def enough(cap, on, wait):
     return (on + wait) - cap if (wait + on) > cap else 0
 
-#solution 3
+
+# solution 3
 def enough(cap, on, wait):
     return max(0, wait - (cap - on))
+
 
 #########################################################################################################
 ##################################            14            #############################################
@@ -442,7 +444,6 @@ Examples(Inputs-->Output):
 *Use Comparison and Logical Operators."""
 
 
-
 def final_grade(exam, projects):
     if exam > 90 or projects > 10:
         return 100
@@ -452,7 +453,6 @@ def final_grade(exam, projects):
         return 75
     else:
         return 0
-
 
 
 #########################################################################################################
@@ -474,10 +474,12 @@ For example 2 is not a factor of 7 because: 7 % 2 = 1
 
 Note: base is a non-negative number, factor is a positive number."""
 
+
 def check_for_factor(base, factor):
     if factor <= 0:
         raise ValueError("Factor should be a positive number.")
     return base % factor == 0
+
 
 #########################################################################################################
 ##################################            16            #############################################
@@ -503,9 +505,6 @@ def find_average(nums):
     if not nums:
         return 0
     return sum(nums) / len(nums)
-
-
-
 
 
 #########################################################################################################
@@ -589,7 +588,6 @@ def sum_dig_pow(a, b):
     return [n for n in range(a, b + 1) if is_eureka_number(n)]
 
 
-
 #########################################################################################################
 ##################################            18            #############################################
 #########################################################################################################
@@ -632,6 +630,7 @@ Your goal in this kata is to create complete the mouth_size method this method t
 to the animal encountered by the frog.
 If this one is an alligator (case-insensitive) return small otherwise return wide."""
 
+
 # solution 1
 
 def mouth_size(animal):
@@ -640,9 +639,11 @@ def mouth_size(animal):
     else:
         return 'wide'
 
+
 # solution 2
 def mouth_size(animal):
     return 'small' if animal.lower() == "alligator" else 'wide'
+
 
 #########################################################################################################
 ##################################            20            #############################################
@@ -662,6 +663,7 @@ Bash note:
 input : 2 strings with substrings separated by ,
 output: number as a string"""
 
+
 def mxdiflg(a1, a2):
     if not a1 or not a2:  # If either array is empty
         return -1
@@ -673,8 +675,6 @@ def mxdiflg(a1, a2):
 
     # Calculate the maximum of the absolute differences
     return max(abs(max_len_a1 - min_len_a2), abs(max_len_a2 - min_len_a1))
-
-
 
 
 #########################################################################################################
@@ -693,8 +693,10 @@ true xor true == false // Both are true.  "xor" only returns true if EXACTLY one
 Task
 Since we cannot define keywords in Javascript (well, at least I don't know how to do it), your task is to define a function xor(a, b) where a and b are the two expressions to be evaluated. Your xor function should have the behaviour described above, returning true if exactly one of the two expressions evaluate to true, false otherwise."""
 
+
 def xor(a, b):
     return (a and not b) or (not a and b)
+
 
 #########################################################################################################
 ##################################            22            #############################################
@@ -738,11 +740,11 @@ class Fighter(object):
 
     __repr__ = __str__
 
+
 # solution1
 def declare_winner(fighter1, fighter2, first_attacker):
     attacker = fighter1 if fighter1.name == first_attacker else fighter2
     defender = fighter2 if attacker == fighter1 else fighter1
-
 
     while fighter1.health > 0 and fighter2.health > 0:
         defender.health -= attacker.damage_per_attack
@@ -753,6 +755,7 @@ def declare_winner(fighter1, fighter2, first_attacker):
         attacker, defender = defender, attacker
 
     return attacker.name
+
 
 #########################################################################################################
 ##################################            23            #############################################
@@ -771,6 +774,7 @@ Your harried co-workers are looking to you for a solution to take this garbled t
  Your program will take in a string and clean out all numeric characters, and return a string with spacing and special characters
   ~#$%^&!@*():;"'.,? all intact."""
 
+
 # solution 1
 def string_clean(s):
     cleared_string = ""
@@ -781,10 +785,10 @@ def string_clean(s):
 
     return cleared_string
 
+
 # solution 2
 def string_clean(s):
     return ''.join(x for x in s if not x.isdigit())
-
 
 
 #########################################################################################################
@@ -814,3 +818,75 @@ def row_weights(array):
             team2 += weight
 
     return (team1, team2)
+
+
+#########################################################################################################
+##################################            25            #############################################
+#########################################################################################################
+
+"""Your task, is to create N×N multiplication table, of size provided in parameter.
+
+For example, when given size is 3:
+
+1 2 3
+2 4 6
+3 6 9
+For the given example, the return value should be:
+
+[[1,2,3],[2,4,6],[3,6,9]]"""
+
+
+def multiplication_table(size):
+    result = []
+
+    for i in range(1, size + 1):
+        row = []
+        for j in range(1, size + 1):
+            row.append(i * j)
+        result.append(row)
+
+    return result
+
+
+#########################################################################################################
+##################################            25            #############################################
+#########################################################################################################
+
+"""Americans are odd people: in their buildings, the first floor is actually the ground floor and there is no 13th floor (due to superstition).
+
+Write a function that given a floor in the american system returns the floor in the european system.
+
+With the 1st floor being replaced by the ground floor and the 13th floor being removed, the numbers move down to take their place. In case of above 13, they move down by two because there are two omitted numbers below them.
+
+Basements (negatives) stay the same as the universal level.
+
+More information here
+
+Examples
+1  =>  0 
+0  =>  0
+5  =>  4
+15  =>  13
+-3  =>  -3"""
+
+# first version i know crude but works
+def get_real_floor(n):
+    result = 0
+
+    if n <= 0:
+        result = n
+    elif n <= 13:
+        result = n - 1
+    elif n > 13:
+        result = n - 2
+
+    return result
+
+#seconf version
+def get_real_floor(n):
+    if n <= 0:
+        return n
+    elif n <= 13:
+        return n - 1
+    else:
+        return n - 2
