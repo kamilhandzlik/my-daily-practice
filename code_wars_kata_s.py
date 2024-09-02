@@ -869,6 +869,7 @@ Examples
 15  =>  13
 -3  =>  -3"""
 
+
 # first version i know crude but works
 def get_real_floor(n):
     result = 0
@@ -882,7 +883,8 @@ def get_real_floor(n):
 
     return result
 
-#second version
+
+# second version
 def get_real_floor(n):
     if n <= 0:
         return n
@@ -910,7 +912,8 @@ The test cases contain numbers only by mistake.
 
 """
 
-#solution 1
+
+# solution 1
 def correct(s):
     mistakes = {'5': 'S', '0': 'O', '1': 'I'}
 
@@ -920,6 +923,109 @@ def correct(s):
     return s
 
 
-#solution 2
+# solution 2
 def correct(string):
     return string.translate(str.maketrans("501", "SOI"))
+
+
+#########################################################################################################
+##################################            27            #############################################
+#########################################################################################################
+
+
+"""Write a function that accepts two integers and returns the remainder of dividing the larger value by the smaller value.
+
+Division by zero should return an empty value.
+
+Examples:
+n = 17
+m = 5
+result = 2 (remainder of `17 / 5`)
+
+n = 13
+m = 72
+result = 7 (remainder of `72 / 13`)
+
+n = 0
+m = -1
+result = 0 (remainder of `0 / -1`)
+
+n = 0
+m = 1
+result - division by zero (refer to the specifications on how to handle this in your language)
+"""
+
+
+# solution 1
+def remainder(a, b):
+    if min(a, b) == 0:
+        return None
+    elif a > b:
+        return a % b
+    else:
+        return b % a
+
+    # solution 2
+
+
+def remainder(a, b):
+    min_val = min(a, b)
+
+    if min_val == 0:
+        return None
+
+    return max(a, b) % min(a, b)
+
+#########################################################################################################
+##################################            28            #############################################
+#########################################################################################################
+
+"""The Fibonacci numbers are the numbers in the following integer sequence (Fn):
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, ...
+
+such as
+
+F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.
+
+Given a number, say prod (for product), we search two Fibonacci numbers F(n) and F(n+1) verifying
+
+F(n) * F(n+1) = prod.
+
+Your function productFib takes an integer (prod) and returns an array:
+
+[F(n), F(n+1), true] or {F(n), F(n+1), 1} or (F(n), F(n+1), True)
+depending on the language if F(n) * F(n+1) = prod.
+
+If you don't find two consecutive F(n) verifying F(n) * F(n+1) = prodyou will return
+
+[F(n), F(n+1), false] or {F(n), F(n+1), 0} or (F(n), F(n+1), False)
+F(n) being the smallest one such as F(n) * F(n+1) > prod.
+
+Some Examples of Return:
+(depend on the language)
+
+productFib(714) # should return (21, 34, true), 
+                # since F(8) = 21, F(9) = 34 and 714 = 21 * 34
+
+productFib(800) # should return (34, 55, false), 
+                # since F(8) = 21, F(9) = 34, F(10) = 55 and 21 * 34 < 800 < 34 * 55
+-----
+productFib(714) # should return [21, 34, true], 
+productFib(800) # should return [34, 55, false], 
+-----
+productFib(714) # should return {21, 34, 1}, 
+productFib(800) # should return {34, 55, 0},        
+-----
+productFib(714) # should return {21, 34, true}, 
+productFib(800) # should return {34, 55, false}, 
+Note:
+You can see examples for your language in "Sample Tests"."""
+
+def product_fib(_prod):
+    a, b = 0, 1
+
+    while a*b < _prod:
+        a, b = b, a+b
+
+    return  [a, b, a*b == _prod]
