@@ -976,6 +976,7 @@ def remainder(a, b):
 
     return max(a, b) % min(a, b)
 
+
 #########################################################################################################
 ##################################            28            #############################################
 #########################################################################################################
@@ -1022,13 +1023,14 @@ productFib(800) # should return {34, 55, false},
 Note:
 You can see examples for your language in "Sample Tests"."""
 
+
 def product_fib(_prod):
     a, b = 0, 1
 
-    while a*b < _prod:
-        a, b = b, a+b
+    while a * b < _prod:
+        a, b = b, a + b
 
-    return  [a, b, a*b == _prod]
+    return [a, b, a * b == _prod]
 
 
 #########################################################################################################
@@ -1068,3 +1070,46 @@ def first_non_consecutive(arr):
             return arr[i]
 
     return None
+
+
+#########################################################################################################
+##################################            30            #############################################
+#########################################################################################################
+
+
+"""Return a new array consisting of elements which are multiple of their own index in input array (length > 1).
+
+Some cases:
+[22, -6, 32, 82, 9, 25] =>  [-6, 32, 25]
+
+[68, -1, 1, -7, 10, 10] => [-1, 10]
+
+[-56,-85,72,-26,-14,76,-27,72,35,-21,-67,87,0,21,59,27,-92,68] => [-85, 72, 0, 68]"""
+
+
+def multiple_of_index(arr):
+    return [arr[i] for i in range(1, len(arr)) if arr[i] % i == 0]
+
+
+#########################################################################################################
+##################################            31            #############################################
+#########################################################################################################
+
+"""Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+For example:
+
+unique_in_order('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+unique_in_order('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+unique_in_order([1, 2, 2, 3, 3])   == [1, 2, 3]
+unique_in_order((1, 2, 2, 3, 3))   == [1, 2, 3]"""
+
+
+def unique_in_order(sequence):
+    result = []
+
+    for i, item in enumerate(sequence):
+        if i == 0 or item != sequence[i - 1]:
+            result.append(item)
+
+    return result
