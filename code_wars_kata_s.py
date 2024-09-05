@@ -1113,3 +1113,91 @@ def unique_in_order(sequence):
             result.append(item)
 
     return result
+
+
+#########################################################################################################
+##################################            32            #############################################
+#########################################################################################################
+
+"""Write a function that checks if a given string (case insensitive) is a palindrome.
+
+A palindrome is a word, number, phrase, or other sequence of symbols that reads the same backwards as forwards,
+ such as madam or racecar."""
+
+
+# first solution
+def is_palindrome(s):
+    s = s.lower()
+    middle_index = len(s) // 2
+
+    if len(s) % 2 == 0:
+        first_half = s[:middle_index]
+        second_half_reversed = s[middle_index:][::-1]
+    else:
+        first_half = s[:middle_index]
+        second_half_reversed = s[middle_index + 1:][::-1]
+
+    return first_half == second_half_reversed
+
+#XDD
+# second solution
+def is_palindrome(s):
+    s = s.lower()
+    middle_index = len(s) // 2
+    return s[:middle_index] == s[middle_index:][::-1] if len(s) % 2 == 0 else s[:middle_index] == s[middle_index + 1:][::-1]
+
+#XD
+# third solution
+def is_palindrome(s):
+    s = s.lower()
+    return s == s[::-1]
+
+#########################################################################################################
+##################################            33            #############################################
+#########################################################################################################
+
+"""Define a method hello that returns "Hello, Name!" to a given name, or says Hello, World! if name is not given (or passed as an empty String).
+
+Assuming that name is a String and it checks for user typos to return a name with a first capital letter (Xxxx).
+
+Examples:
+
+* With `name` = "john"  => return "Hello, John!"
+* With `name` = "aliCE" => return "Hello, Alice!"
+* With `name` not given 
+  or `name` = ""        => return "Hello, World!"""
+
+# first solution
+def hello(name="World"):
+    return f"Hello, World!" if name == '' or name == None else f"Hello, {name.lower().capitalize()}!"
+
+# second solution
+def hello(name=''):
+    return f"Hello, {name.title() or 'World'}!"
+
+
+#########################################################################################################
+##################################            34            #############################################
+#########################################################################################################
+
+"""In this Kata, you will be given a string that may have mixed uppercase and lowercase letters and your task is to convert that string to either lowercase only or uppercase only based on:
+
+make as few changes as possible.
+if the string contains equal number of uppercase and lowercase letters, convert the string to lowercase.
+For example:
+
+solve("coDe") = "code". Lowercase characters > uppercase. Change only the "D" to lowercase.
+solve("CODe") = "CODE". Uppercase characters > lowecase. Change only the "e" to uppercase.
+solve("coDE") = "code". Upper == lower"""
+
+
+def solve(s):
+    lowercase_count = sum(1 for char in s if char.islower())
+    uppercase_count = sum(1 for char in s if char.isupper())
+
+    if lowercase_count >= uppercase_count:
+        return s.lower()
+    else:
+        return s.upper()
+
+
