@@ -1369,3 +1369,82 @@ Input constraints:
 
 def past(h, m, s):
     return h * 3600000 + m * 60000 + s * 1000
+
+
+#########################################################################################################
+##################################            39            #############################################
+#########################################################################################################
+
+"""The input is a string str of digits. Cut the string into chunks (a chunk here is a substring of the initial string) of size sz (ignore the last chunk if its size is less than sz).
+
+If the sum of a chunk's digits is divisible by 2, reverse that chunk; otherwise rotate it to the left by one position. Put together these modified chunks and return the result as a string.
+
+If
+
+sz is <= 0 or if str == "" return ""
+sz is greater (>) than the length of str it is impossible to take a chunk of size sz hence return "".
+Examples:
+("123456987654", 6) --> "234561876549"
+("123456987653", 6) --> "234561356789"
+("66443875", 4) --> "44668753"
+("66443875", 8) --> "64438756"
+("664438769", 8) --> "67834466"
+("123456779", 8) --> "23456771"
+("", 8) --> ""
+("123456779", 0) --> "" 
+("563000655734469485", 4) --> "0365065073456944"
+Example of a string rotated to the left by one position:
+s = "123456" gives "234561"."""
+
+def rev_rot(strng, sz):
+    if sz <= 0 or strng == '' or sz > len(strng):
+        return ""
+
+    chunks = []
+
+    for i in range(0, len(strng), sz):
+        chunk = strng[i:i+sz]
+
+        if len(chunk) == sz:
+            chunk_sum = sum(int(digit) for digit in chunk)
+
+            if chunk_sum % 2 == 0:
+                chunks.append(chunk[::-1])
+            else:
+                chunks.append(chunk[1:] + chunk[0])
+
+    return ''.join(chunks)
+
+
+#########################################################################################################
+##################################            40            #############################################
+#########################################################################################################
+
+"""Your Job
+Find the sum of all multiples of n below m
+
+Keep in Mind
+n and m are natural numbers (positive integers)
+m is excluded from the multiples
+Examples
+sumMul(2, 9)   ==> 2 + 4 + 6 + 8 = 20
+sumMul(3, 13)  ==> 3 + 6 + 9 + 12 = 30
+sumMul(4, 123) ==> 4 + 8 + 12 + ... = 1860
+sumMul(4, -7)  ==> "INVALID"""
+
+
+def sum_mul(n, m):
+    if n >= m or n == m:
+        return 0
+
+    if m <= n or m <= 0:
+        return 'INVALID'
+
+    result = 0
+    multiple_of_n = n
+
+    while multiple_of_n <= m:
+        result += multiple_of_n
+        multiple_of_n += n
+
+    return result
