@@ -1139,18 +1139,22 @@ def is_palindrome(s):
 
     return first_half == second_half_reversed
 
-#XDD
+
+# XDD
 # second solution
 def is_palindrome(s):
     s = s.lower()
     middle_index = len(s) // 2
-    return s[:middle_index] == s[middle_index:][::-1] if len(s) % 2 == 0 else s[:middle_index] == s[middle_index + 1:][::-1]
+    return s[:middle_index] == s[middle_index:][::-1] if len(s) % 2 == 0 else s[:middle_index] == s[middle_index + 1:][
+                                                                                                  ::-1]
 
-#XD
+
+# XD
 # third solution
 def is_palindrome(s):
     s = s.lower()
     return s == s[::-1]
+
 
 #########################################################################################################
 ##################################            33            #############################################
@@ -1167,9 +1171,11 @@ Examples:
 * With `name` not given 
   or `name` = ""        => return "Hello, World!"""
 
+
 # first solution
 def hello(name="World"):
     return f"Hello, World!" if name == '' or name == None else f"Hello, {name.lower().capitalize()}!"
+
 
 # second solution
 def hello(name=''):
@@ -1232,6 +1238,7 @@ sum_pairs([10, 5, 2, 3, 7, 5],         10)
 == [3, 7]
 Negative numbers and duplicate numbers can and will appear."""
 
+
 def sum_pairs(ints, s):
     seen = set()
     for num in ints:
@@ -1240,8 +1247,6 @@ def sum_pairs(ints, s):
             return [target, num]
         seen.add(num)
     return None
-
-
 
 
 #########################################################################################################
@@ -1260,6 +1265,7 @@ Examples
 "Buckethead" is an anagram of "DeathCubeK"
 
 """
+
 
 def is_anagram(test, original):
     return sorted(test.lower()) == sorted(original.lower())
@@ -1303,6 +1309,8 @@ Together with the encryption function, you should also implement a decryption fu
 If the string S is an empty value or the integer N is not positive, return the first argument without changes.
 
 """
+
+
 def encrypt(text, n):
     if not text or n <= 0:
         return text
@@ -1342,7 +1350,6 @@ def decrypt(encrypted_text, n):
     return encrypted_text
 
     return
-
 
 
 #########################################################################################################
@@ -1396,6 +1403,7 @@ Examples:
 Example of a string rotated to the left by one position:
 s = "123456" gives "234561"."""
 
+
 def rev_rot(strng, sz):
     if sz <= 0 or strng == '' or sz > len(strng):
         return ""
@@ -1403,7 +1411,7 @@ def rev_rot(strng, sz):
     chunks = []
 
     for i in range(0, len(strng), sz):
-        chunk = strng[i:i+sz]
+        chunk = strng[i:i + sz]
 
         if len(chunk) == sz:
             chunk_sum = sum(int(digit) for digit in chunk)
@@ -1448,3 +1456,153 @@ def sum_mul(n, m):
         multiple_of_n += n
 
     return result
+
+
+#########################################################################################################
+##################################            41            #############################################
+#########################################################################################################
+
+"""Finish the solution so that it sorts the passed in array of numbers. If the function passes in an empty array or null/nil value then it should return an empty array.
+
+For example:
+
+solution([1,2,3,10,5]) # should return [1,2,3,5,10]
+solution(None) # should return []"""
+
+
+# Solution 1
+def solution(nums):
+    return [] if nums == None or nums == [] else sorted(nums)
+
+
+# Solution 2
+def solution(nums):
+    return sorted(nums or [])
+
+
+#########################################################################################################
+##################################            42            #############################################
+#########################################################################################################
+
+"""Make multiple functions that will return the sum, difference, modulus, product, quotient, and the exponent respectively.
+
+Please use the following function names:
+
+addition = add
+
+multiply = multiply
+
+division = divide (both integer and float divisions are accepted)
+
+modulus = mod
+
+exponential = exponent
+
+subtraction = subt
+
+Note: All math operations will be: a (operation) b"""
+
+
+def add(a, b):
+    return a + b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    return a / b
+
+
+def mod(a, b):
+    return a % b
+
+
+def exponent(a, b):
+    return a ** b
+
+
+def subt(a, b):
+    return a - b
+
+
+#########################################################################################################
+##################################            43            #############################################
+#########################################################################################################
+
+"""There's a "3 for 2" (or "2+1" if you like) offer on mangoes. For a given quantity and price (per mango), calculate the total cost of the mangoes.
+
+Examples
+mango(2, 3) ==> 6    # 2 mangoes for $3 per unit = $6; no mango for free
+mango(3, 3) ==> 6    # 2 mangoes for $3 per unit = $6; +1 mango for free
+mango(5, 3) ==> 12   # 4 mangoes for $3 per unit = $12; +1 mango for free
+mango(9, 5) ==> 30   # 6 mangoes for $5 per unit = $30; +3 mangoes for free"""
+
+
+# Solution 2
+def mango(quantity, price):
+    free_fruit = quantity // 3
+    paid_fruit = quantity - free_fruit
+    return paid_fruit * price
+
+
+# Solution 2
+def mango(quantity, price):
+    return (quantity - quantity // 3) * price
+
+
+#########################################################################################################
+##################################            44            #############################################
+#########################################################################################################
+
+"""*** No Loops Allowed ***
+
+You will be given an array a and a value x. All you need to do is check whether the provided array contains the value, without using a loop.
+
+Array can contain numbers or strings. x can be either. Return true if the array contains the value, false if not. With strings you will need to account for case.
+
+Looking for more, loop-restrained fun? Check out the other kata in the series:"""
+
+
+def check(a, x):
+    return x in a
+
+
+#########################################################################################################
+##################################            45            #############################################
+#########################################################################################################
+
+"""Given two numbers and an arithmetic operator (the name of it, as a string), return the result of the two numbers having that operator used on them.
+
+a and b will both be positive integers, and a will always be the first number in the operation, and b always the second.
+
+The four operators are "add", "subtract", "divide", "multiply".
+
+A few examples:(Input1, Input2, Input3 --> Output)
+
+5, 2, "add"      --> 7
+5, 2, "subtract" --> 3
+5, 2, "multiply" --> 10
+5, 2, "divide"   --> 2.5"""
+
+
+# Solutin 1
+def arithmetic(a, b, operator):
+    if operator == "add":
+        return a + b
+    elif operator == "subtract":
+        return a - b
+    elif operator == "multiply":
+        return a * b
+    elif operator == "divide":
+        return a / b
+
+
+# Solutin 2 without if statements
+def arithmetic(a, b, operator):
+    operations = {"add": a + b,
+                  "subtract": a - b,
+                  "multiply": a * b,
+                  "divide": a / b}
+    return operations[operator]
