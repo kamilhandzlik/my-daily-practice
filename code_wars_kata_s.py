@@ -1606,3 +1606,120 @@ def arithmetic(a, b, operator):
                   "multiply": a * b,
                   "divide": a / b}
     return operations[operator]
+
+
+#########################################################################################################
+##################################            46            #############################################
+#########################################################################################################
+
+"""Take an integer n (n >= 0) and a digit d (0 <= d <= 9) as an integer.
+
+Square all numbers k (0 <= k <= n) between 0 and n.
+
+Count the numbers of digits d used in the writing of all the k**2.
+
+Implement the function taking n and d as parameters and returning this count.
+
+Examples:
+n = 10, d = 1 
+the k*k are 0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100
+We are using the digit 1 in: 1, 16, 81, 100. The total count is then 4.
+
+The function, when given n = 25 and d = 1 as argument, should return 11 since
+the k*k that contain the digit 1 are:
+1, 16, 81, 100, 121, 144, 169, 196, 361, 441.
+So there are 11 digits 1 for the squares of numbers between 0 and 25.
+Note that 121 has twice the digit 1."""
+
+
+def nb_dig(n, d):
+    count = 0
+    d = str(d)
+
+    for k in range(n + 1):
+        squared = str(k ** 2)
+        count += squared.count(d)
+
+    return count
+
+
+#########################################################################################################
+##################################            47            #############################################
+#########################################################################################################
+
+"""Grasshopper - Function syntax debugging
+A student was working on a function and made some syntax mistakes while coding. Help them find their mistakes and fix them."""
+
+"""
+def main [verb, noun]
+return verb + noun
+"""
+
+
+def main(verb, noun):
+    # This function has three problems: square brackets instead of parenthesis,
+    # a colon after the parenthesis and the return command inside the
+    # function is not indented.
+    return verb + noun
+
+
+#########################################################################################################
+##################################            48            #############################################
+#########################################################################################################
+
+"""Write Number in Expanded Form
+You will be given a number and you will need to return it as a string in Expanded Form. For example:
+
+expandedForm(12)    --> should return "10 + 2"
+expandedForm(42)    --> should return "40 + 2"
+expandedForm(70304) --> should return "70000 + 300 + 4"
+NOTE: All numbers will be whole numbers greater than 0.
+
+If you liked this kata, check out part 2!!"""
+
+# Solution 1
+def expanded_form(num):
+    numbers = []
+    num = str(num)
+
+    for i, j in enumerate(num[::-1]):
+        if j != '0':
+            numbers.append(str(int(j) * (10 ** i)))
+
+    numbers = numbers[::-1]
+    return (' + ').join(numbers)
+
+# Solution 2 this one was made by user rafiathallah3 all credits go to him. Yes I took it but it's to impressive to be left alone and for me to have chance about forgeting about this masterpice
+def expanded_form(num):
+    """
+    ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⠛⠛⠋⠉⠈⠉⠉⠉⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⢿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⡏⣀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿
+    ⣿⣿⣿⢏⣴⣿⣷⠀⠀⠀⠀⠀⢾⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿
+    ⣿⣿⣟⣾⣿⡟⠁⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣷⢢⠀⠀⠀⠀⠀⠀⠀⢸⣿
+    ⣿⣿⣿⣿⣟⠀⡴⠄⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⣿
+    ⣿⣿⣿⠟⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠶⢴⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⣿
+    ⣿⣁⡀⠀⠀⢰⢠⣦⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⡄⠀⣴⣶⣿⡄⣿
+    ⣿⡋⠀⠀⠀⠎⢸⣿⡆⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠗⢘⣿⣟⠛⠿⣼
+    ⣿⣿⠋⢀⡌⢰⣿⡿⢿⡀⠀⠀⠀⠀⠀⠙⠿⣿⣿⣿⣿⣿⡇⠀⢸⣿⣿⣧⢀⣼
+    ⣿⣿⣷⢻⠄⠘⠛⠋⠛⠃⠀⠀⠀⠀⠀⢿⣧⠈⠉⠙⠛⠋⠀⠀⠀⣿⣿⣿⣿⣿
+    ⣿⣿⣧⠀⠈⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠟⠀⠀⠀⠀⢀⢃⠀⠀⢸⣿⣿⣿⣿
+    ⣿⣿⡿⠀⠴⢗⣠⣤⣴⡶⠶⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡸⠀⣿⣿⣿⣿
+    ⣿⣿⣿⡀⢠⣾⣿⠏⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠉⠀⣿⣿⣿⣿
+    ⣿⣿⣿⣧⠈⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿
+    ⣿⣿⣿⣿⡄⠈⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣦⣄⣀⣀⣀⣀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠙⣿⣿⡟⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠁⠀⠀⠹⣿⠃⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢐⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣿⣿⠿⠛⠉⠉⠁⠀⢻⣿⡇⠀⠀⠀⠀⠀⠀⢀⠈⣿⣿⡿⠉⠛⠛⠛⠉⠉
+    ⣿⡿⠋⠁⠀⠀⢀⣀⣠⡴⣸⣿⣇⡄⠀⠀⠀⠀⢀⡿⠄⠙⠛⠀⣀⣠⣤⣤⠄
+
+    Why yes i love programming, How do you know?
+    """
+
+    return " + ".join(
+        [str(int(v) * int("1" + "0" * (len(str(num)) - (i + 1)))) for i, v in enumerate(str(num)) if v != "0"])
