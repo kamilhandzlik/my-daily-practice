@@ -1723,3 +1723,141 @@ def expanded_form(num):
 
     return " + ".join(
         [str(int(v) * int("1" + "0" * (len(str(num)) - (i + 1)))) for i, v in enumerate(str(num)) if v != "0"])
+
+
+
+#########################################################################################################
+##################################            49            #############################################
+#########################################################################################################
+
+
+"""Given a number of points on a plane, your task is to find two points with the smallest distance between them in linearithmic O(n log n) time.
+
+Example
+  1  2  3  4  5  6  7  8  9
+1  
+2    . A
+3                . D
+4                   . F       
+5             . C
+6              
+7                . E
+8    . B
+9                   . G
+For the plane above, the input will be:
+
+(
+  (2,2), # A
+  (2,8), # B
+  (5,5), # C
+  (6,3), # D
+  (6,7), # E
+  (7,4), # F
+  (7,9)  # G
+)
+=> closest pair is: ((6,3),(7,4)) or ((7,4),(6,3))
+(both answers are valid. You can return a list of tuples too)
+The two points that are closest to each other are D and F.
+Expected answer should be an array with both points in any order.
+
+Goal
+The goal is to come up with a function that can find two closest points for any arbitrary array of points, in a linearithmic time.
+
+Note: Don't use math.hypot, it's too slow...
+
+More information on wikipedia."""
+
+from math import sqrt
+
+# This function calculate distance between points
+def distance(p1, p2):
+    return sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+
+# This function search closest  pair of points in strip
+def closest_strip(strip, d):
+    min_dist = d
+    closest_pair = None
+    strip.sort(key=lambda p: p[1])
+
+    # Search for pair of points in the strip
+    for i in range(len(strip)):
+        for j in range(i + 1, len(strip)):
+            if (strip[j][1] - strip[i][1]) < min_dist:
+                dist = distance(strip[i], strip[j])
+                if dist < min_dist:
+                    min_dist = dist
+                    closest_pair = ((strip[i]), strip[j])
+            else:
+                break
+    return closest_pair, min_dist
+
+# Recurecting function divide and win
+def closest_recursive(points_x, points_y):
+    # if we have less than four points we bruteforce the problem
+    if len(points_x) <= 3:
+        min_dist = float('inf')
+        closest_pair = None
+        for i in range(len(points_x)):
+            for j in range(i + 1, len(points_x)):
+                dist = distance(points_x[i], points_x[j])
+
+                if dist < min_dist:
+                    min_dist = dist
+                    closest_pair = (points_x[i], points_x[j])
+        return closest_pair, min_dist
+
+
+    # Finding center of the plain
+    mid = len(points_x) // 2
+    midpoint = points_x[mid]
+
+    # Divide points in two halves
+    left_x = points_x[:mid]
+    right_x = points_x[mid:]
+
+    # Save points sorted by coordinates y
+    left_y = list(filter(lambda p: p[0] <= midpoint[0], points_y))
+    right_y = list(filter(lambda p: p[0] > midpoint[0], points_y))
+
+    # Find closest pair in both halves
+    closest_left, dist_left = closest_recursive(left_x, left_y)
+    closest_right, dist_right = closest_recursive(right_x, right_y)
+
+    # Finding minimal distance between points in both halves
+    d = min(dist_left, dist_right)
+    closest_pair = closest_left if dist_left < dist_right else closest_right
+
+    # Making strip including points nirby divide
+    strip = [p for p in points_y if abs(p[0] - midpoint[0]) < d]
+
+    # Finding closest pair of points in strip
+    closest_in_strip, dist_strip = closest_strip(strip, d)
+
+
+    # Aktualizing minimal distance, if closest pair is in strip
+    if dist_strip < d:
+        return closest_in_strip, dist_strip
+    else:
+        return closest_pair, d
+
+
+def closest_pair(points):
+    points_x = sorted(points, key=lambda p: p[0])
+    points_y = sorted(points, key=lambda p: p[1])
+
+    closest, _ = closest_recursive(points_x, points_y)
+    return closest
+
+
+
+points = [
+    (2, 2),  # A
+    (2, 8),  # B
+    (5, 5),  # C
+    (6, 3),  # D
+    (6, 7),  # E
+    (7, 4),  # F
+    (7, 9)   # G
+]
+result = closest_pair(points)
+print(f"Closest pair is: {result}")
