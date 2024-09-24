@@ -1861,3 +1861,98 @@ points = [
 ]
 result = closest_pair(points)
 print(f"Closest pair is: {result}")
+
+
+#########################################################################################################
+##################################            50            #############################################
+#########################################################################################################
+
+"""A string is considered to be in title case if each word in the string is either (a) capitalised (that is, only the first letter of the word is in upper case) or (b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
+
+Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same way even if the case of the minor word string is changed.
+
+Arguments (Haskell)
+First argument: space-delimited list of minor words that must always be lowercase except for the first word in the string.
+Second argument: the original string to be converted.
+Arguments (Other languages)
+First argument (required): the original string to be converted.
+Second argument (optional): space-delimited list of minor words that must always be lowercase except for the first word in the string. The JavaScript/CoffeeScript tests will pass undefined when this argument is unused.
+Example
+title_case('a clash of KINGS', 'a an the of') # should return: 'A Clash of Kings'
+title_case('THE WIND IN THE WILLOWS', 'The In') # should return: 'The Wind in the Willows'
+title_case('the quick brown fox') # should return: 'The Quick Brown Fox'"""
+
+
+def title_case(title: str, minor_words: str =''):
+    minor_words = minor_words.lower().split() if minor_words else []
+    words = title.split()
+    result = []
+
+    for i, word in enumerate(words):
+        if i == 0:
+            result.append(word.capitalize())
+        elif word.lower() in minor_words:
+            result.append(word.lower())
+        else:
+            result.append(word.capitalize())
+
+    return ' '.join(result)
+
+
+#########################################################################################################
+##################################            51            #############################################
+#########################################################################################################
+
+# IDK WTF it is?!
+"""Messi's Goal Total
+Use variables to find the sum of the goals Messi scored in 3 competitions
+
+Information
+Messi goal scoring statistics:
+
+Competition	Goals
+La Liga	43
+Champions League	10
+Copa del Rey	5
+Task
+Create these three variables and store the appropriate values using the table above:
+la_liga_goals
+champions_league_goals
+copa_del_rey_goals
+Create a fourth variable named total_goals that stores the sum of all of Messi's goals for this year."""
+
+
+la_liga_goals, champions_league_goals, copa_del_rey_goals = 43, 10, 5
+
+total_goals = la_liga_goals + champions_league_goals + copa_del_rey_goals
+
+
+#########################################################################################################
+##################################            52            #############################################
+#########################################################################################################
+
+"""The museum of incredibly dull things
+The museum of incredibly dull things wants to get rid of some exhibits. Miriam, the interior architect, comes up with a plan to remove the most boring exhibits. She gives them a rating, and then removes the one with the lowest rating.
+
+However, just as she finished rating all exhibits, she's off to an important fair, so she asks you to write a program that tells her the ratings of the exhibits after removing the lowest one. Fair enough.
+
+Task
+Given an array of integers, remove the smallest value. Do not mutate the original array/list. If there are multiple elements with the same value, remove the one with the lowest index. If you get an empty array/list, return an empty array/list.
+
+Don't change the order of the elements that are left.
+
+Examples
+* Input: [1,2,3,4,5], output = [2,3,4,5]
+* Input: [5,3,2,1,4], output = [5,3,2,4]
+* Input: [2,2,1,2,1], output = [2,2,2,1]"""
+
+
+def remove_smallest(numbers):
+    if not numbers:
+        return []
+
+    result = numbers[:]
+    min_index = result.index(min(result))
+    result.pop(min_index)
+
+    return result
