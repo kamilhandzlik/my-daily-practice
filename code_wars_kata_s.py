@@ -1677,6 +1677,7 @@ NOTE: All numbers will be whole numbers greater than 0.
 
 If you liked this kata, check out part 2!!"""
 
+
 # Solution 1
 def expanded_form(num):
     numbers = []
@@ -1688,6 +1689,7 @@ def expanded_form(num):
 
     numbers = numbers[::-1]
     return (' + ').join(numbers)
+
 
 # Solution 2 this one was made by user rafiathallah3 all credits go to him. Yes I took it but it's to impressive to be left alone and for me to have chance about forgeting about this masterpice.
 def expanded_form(num):
@@ -1723,7 +1725,6 @@ def expanded_form(num):
 
     return " + ".join(
         [str(int(v) * int("1" + "0" * (len(str(num)) - (i + 1)))) for i, v in enumerate(str(num)) if v != "0"])
-
 
 
 #########################################################################################################
@@ -1769,9 +1770,11 @@ More information on wikipedia."""
 
 from math import sqrt
 
+
 # This function calculate distance between points
 def distance(p1, p2):
-    return sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+    return sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+
 
 # This function search closest  pair of points in strip
 def closest_strip(strip, d):
@@ -1791,6 +1794,7 @@ def closest_strip(strip, d):
                 break
     return closest_pair, min_dist
 
+
 # Recurecting function divide and win
 def closest_recursive(points_x, points_y):
     # if we have less than four points we bruteforce the problem
@@ -1805,7 +1809,6 @@ def closest_recursive(points_x, points_y):
                     min_dist = dist
                     closest_pair = (points_x[i], points_x[j])
         return closest_pair, min_dist
-
 
     # Finding center of the plain
     mid = len(points_x) // 2
@@ -1833,7 +1836,6 @@ def closest_recursive(points_x, points_y):
     # Finding closest pair of points in strip
     closest_in_strip, dist_strip = closest_strip(strip, d)
 
-
     # Aktualizing minimal distance, if closest pair is in strip
     if dist_strip < d:
         return closest_in_strip, dist_strip
@@ -1849,7 +1851,6 @@ def closest_pair(points):
     return closest
 
 
-
 points = [
     (2, 2),  # A
     (2, 8),  # B
@@ -1857,11 +1858,10 @@ points = [
     (6, 3),  # D
     (6, 7),  # E
     (7, 4),  # F
-    (7, 9)   # G
+    (7, 9)  # G
 ]
 result = closest_pair(points)
 print(f"Closest pair is: {result}")
-
 
 #########################################################################################################
 ##################################            50            #############################################
@@ -1883,7 +1883,7 @@ title_case('THE WIND IN THE WILLOWS', 'The In') # should return: 'The Wind in th
 title_case('the quick brown fox') # should return: 'The Quick Brown Fox'"""
 
 
-def title_case(title: str, minor_words: str =''):
+def title_case(title: str, minor_words: str = ''):
     minor_words = minor_words.lower().split() if minor_words else []
     words = title.split()
     result = []
@@ -1921,11 +1921,9 @@ champions_league_goals
 copa_del_rey_goals
 Create a fourth variable named total_goals that stores the sum of all of Messi's goals for this year."""
 
-
 la_liga_goals, champions_league_goals, copa_del_rey_goals = 43, 10, 5
 
 total_goals = la_liga_goals + champions_league_goals + copa_del_rey_goals
-
 
 #########################################################################################################
 ##################################            52            #############################################
@@ -1957,3 +1955,37 @@ def remove_smallest(numbers):
     result.pop(min_index)
 
     return result
+
+
+#########################################################################################################
+##################################            52            #############################################
+#########################################################################################################
+
+
+"""Philip's just turned four and he wants to know how old he will be in various years in the future such as 2090 or 3044. His parents can't keep up calculating this so they've begged you to help them out by writing a programme that can answer Philip's endless questions.
+
+Your task is to write a function that takes two parameters: the year of birth and the year to count years in relation to. As Philip is getting more curious every day he may soon want to know how many years it was until he would be born, so your function needs to work with both dates in the future and in the past.
+
+Provide output in this format: For dates in the future: "You are ... year(s) old." For dates in the past: "You will be born in ... year(s)." If the year of birth equals the year requested return: "You were born this very year!"
+
+"..." are to be replaced by the number, followed and proceeded by a single space. Mind that you need to account for both "year" and "years", depending on the result.
+
+Good Luck!"""
+
+
+# Solution 1
+def calculate_age(year_of_birth, current_year):
+    calculated_year = current_year - year_of_birth
+    if calculated_year > 0:
+        return f"You are {calculated_year} {'years' if calculated_year > 1 or calculated_year * (-1) > 1 else 'year'} old."
+    elif current_year == year_of_birth:
+        return 'You were born this very year!'
+    else:
+        return f"You will be born in {calculated_year * (-1)} {'years' if calculated_year > 1 or calculated_year * (-1) > 1 else 'year'}."
+
+
+# Solution 2
+def calculate_age(year_of_birth, current_year):
+    diff = abs(current_year - year_of_birth)
+    age = '#d year%s' % (diff , 's' * bool(diff-1))
+    return  "You were born this very year!" if not diff else "You are %s old." % age if current_year > year_of_birth else "You will be born in %s." % age
