@@ -1861,7 +1861,7 @@ points = [
     (7, 9)  # G
 ]
 result = closest_pair(points)
-print(f"Closest pair is: {result}")
+
 
 #########################################################################################################
 ##################################            50            #############################################
@@ -1987,5 +1987,33 @@ def calculate_age(year_of_birth, current_year):
 # Solution 2
 def calculate_age(year_of_birth, current_year):
     diff = abs(current_year - year_of_birth)
-    age = '#d year%s' % (diff , 's' * bool(diff-1))
-    return  "You were born this very year!" if not diff else "You are %s old." % age if current_year > year_of_birth else "You will be born in %s." % age
+    age = '#d year%s' % (diff, 's' * bool(diff - 1))
+    return "You were born this very year!" if not diff else "You are %s old." % age if current_year > year_of_birth else "You will be born in %s." % age
+
+
+#########################################################################################################
+##################################            52            #############################################
+#########################################################################################################
+
+"""Complete the function which converts a binary number (given as a string) to a decimal number."""
+
+# Solution 1
+def bin_to_decimal(inp):
+    if not all(c in '01' for c in inp):
+        raise ValueError('The input is not a valid binary number')
+
+    result = 0
+
+    for pos, num in enumerate(reversed(inp)):
+        if num == '1':
+          i = 2 ** int(pos)
+          result += i
+
+    return result
+
+# Solution 2
+def bin_to_decimal(inp):
+    return int(inp, 2)
+
+
+
