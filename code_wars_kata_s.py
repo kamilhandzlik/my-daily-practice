@@ -1862,7 +1862,6 @@ points = [
 ]
 result = closest_pair(points)
 
-
 #########################################################################################################
 ##################################            50            #############################################
 #########################################################################################################
@@ -1997,6 +1996,7 @@ def calculate_age(year_of_birth, current_year):
 
 """Complete the function which converts a binary number (given as a string) to a decimal number."""
 
+
 # Solution 1
 def bin_to_decimal(inp):
     if not all(c in '01' for c in inp):
@@ -2006,14 +2006,94 @@ def bin_to_decimal(inp):
 
     for pos, num in enumerate(reversed(inp)):
         if num == '1':
-          i = 2 ** int(pos)
-          result += i
+            i = 2 ** int(pos)
+            result += i
 
     return result
+
 
 # Solution 2
 def bin_to_decimal(inp):
     return int(inp, 2)
 
 
+#########################################################################################################
+##################################            53            #############################################
+#########################################################################################################
 
+
+"""Create a function called _if which takes 3 arguments: a value bool and 2 functions (which do not take any parameters): func1 and func2
+
+When bool is truthy, func1 should be called, otherwise call the func2.
+
+Example:
+def truthy(): 
+  print("True")
+  
+def falsey(): 
+  print("False")
+  
+_if(True, truthy, falsey)
+# prints 'True' to the console"""
+
+
+def _if(bool, func1, func2):
+    func2() if bool else func1()
+
+
+#########################################################################################################
+##################################            54            #############################################
+#########################################################################################################
+
+"""Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants a diamond string from James. Since James doesn't know how to make this happen, he needs your help.
+
+Task
+You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters. Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
+
+Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.
+
+Examples
+A size 3 diamond:
+
+ *
+***
+ *
+...which would appear as a string of " *\n***\n *\n"
+
+A size 5 diamond:
+
+  *
+ ***
+*****
+ ***
+  *
+...that is:
+
+"  *\n ***\n*****\n ***\n  *\n"""
+
+
+def diamond(n):
+    if n <= 0 or n % 2 == 0:
+        return None
+
+    result = ""
+    mid = n // 2
+
+    # Upper half of diamond
+    for i in range(mid + 1):
+        spaces = mid - i
+        stars = 2 * i +1
+        result += ' ' * spaces + '*' * stars + '\n'
+
+    # Down half of diamond
+    for i in range(mid - 1, -1 , -1):
+        spaces = mid - i
+        stars = 2 * i + 1
+        result += ' ' * spaces + '*' * stars + '\n'
+
+    return result
+
+
+#########################################################################################################
+##################################            55            #############################################
+#########################################################################################################
