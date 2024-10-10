@@ -2123,3 +2123,38 @@ def data_reverse(data):
     reversed_segments = segments[::-1]
     result = [bit for segment in reversed_segments for bit in segment]
     return result
+
+
+#########################################################################################################
+##################################            56            #############################################
+#########################################################################################################
+
+
+"""Kids drink toddy.
+Teens drink coke.
+Young adults drink beer.
+Adults drink whisky.
+Make a function that receive age, and return what they drink.
+
+Rules:
+
+Children under 14 old.
+Teens under 18 old.
+Young under 21 old.
+Adults have 21 or more.
+Examples: (Input --> Output)
+
+13 --> "drink toddy"
+17 --> "drink coke"
+18 --> "drink beer"
+20 --> "drink beer"
+30 --> "drink whisky"""
+
+# solution 1
+def people_with_age_drink(age):
+    instructions =[(14, "drink toddy"), (18, "drink coke"), (21, "drink beer"), (float('inf'), "drink whisky")]
+    return next(drink for limit, drink in instructions if age < limit)
+
+# solution 2
+def people_with_age_drink(age):
+    return 'drink ' + ('toddy' if age < 14 else 'coke' if age < 18 else 'beer' if age < 21 else 'whisky')
