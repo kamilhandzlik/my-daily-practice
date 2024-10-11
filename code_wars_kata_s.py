@@ -2158,3 +2158,29 @@ def people_with_age_drink(age):
 # solution 2
 def people_with_age_drink(age):
     return 'drink ' + ('toddy' if age < 14 else 'coke' if age < 18 else 'beer' if age < 21 else 'whisky')
+
+
+#########################################################################################################
+##################################            56            #############################################
+#########################################################################################################
+
+"""Description:
+Remove all exclamation marks from the end of sentence.
+
+Examples
+"Hi!"     ---> "Hi"
+"Hi!!!"   ---> "Hi"
+"!Hi"     ---> "!Hi"
+"!Hi!"    ---> "!Hi"
+"Hi! Hi!" ---> "Hi! Hi"
+"Hi"      ---> "Hi"""
+
+# solution 1
+def remove(st):
+    while st.endswith('!'):
+        st = st[:-1]
+    return st
+
+# solution 2
+def remove(s):
+    return s.rstrip("!")
