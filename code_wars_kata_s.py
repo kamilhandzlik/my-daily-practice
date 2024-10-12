@@ -2184,3 +2184,38 @@ def remove(st):
 # solution 2
 def remove(s):
     return s.rstrip("!")
+
+
+
+#########################################################################################################
+##################################            56            #############################################
+#########################################################################################################
+
+"""When provided with a letter, return its position in the alphabet.
+
+Input :: "a"
+
+Output :: "Position of alphabet: 1"
+
+Note: Only lowercased English letters are tested
+
+"""
+
+# Solution 1
+def position(alphabet):
+    poz_in_alph = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 'j': 10, 'k': 11, 'l': 12, 'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 'z': 26}
+    for letter, poz in poz_in_alph.items():
+        if alphabet == letter:
+            return f"Position of alphabet: {poz}"
+
+# Solution 2
+def position_polish(alphabet):
+    alphabet_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z', 'ź', 'ż']
+    return f"Position of alphabet {alphabet_list.index(alphabet) + 1}"
+
+
+# Solution 3
+def position(alphabet):
+    return f"Position of alphabet:{ord(alphabet) - ord('a') + 1}"
+
+
