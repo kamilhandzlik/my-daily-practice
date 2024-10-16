@@ -2333,8 +2333,13 @@ DECK = ['2S','3S','4S','5S','6S','7S','8S','9S','10S','JS','QS','KS','AS',
 ('3H') -> return 'hearts'
 ('3S') -> return 'spades'"""
 
+# Solution 1
 def define_suit(card):
     suits = {'c': 'clubs','d': 'diamonds','h': 'hearts','s': 'spades'}
     for i, j in suits.items():
         if i in card.lower():
             return j
+
+# Solution 2
+def define_suit(card):
+    return {'C': 'clubs', 'S': 'spades', 'D': 'diamonds', 'H': 'hearts'}[card[-1]]
