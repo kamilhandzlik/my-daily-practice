@@ -2360,3 +2360,55 @@ With "James" as the first name and "Stevens" as the last name should return "Jam
 def combine_names(first_name, last_name):
     return first_name + ' ' + last_name
 
+#########################################################################################################
+##################################            65            #############################################
+#########################################################################################################
+
+"""Terminal game move function
+In this game, the hero moves from left to right. The player rolls the dice and moves the number of spaces indicated by the dice two times.
+
+Create a function for the terminal game that takes the current position of the hero and the roll (1-6) and return the new position.
+
+Example:
+move(3, 6) should equal 15"""
+
+def move(position, roll):
+    return position + roll*2
+
+#########################################################################################################
+##################################            66            #############################################
+#########################################################################################################
+
+"""In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater than or equal to p = 1200 inhabitants?
+
+At the end of the first year there will be: 
+1000 + 1000 * 0.02 + 50 => 1070 inhabitants
+
+At the end of the 2nd year there will be: 
+1070 + 1070 * 0.02 + 50 => 1141 inhabitants (** number of inhabitants is an integer **)
+
+At the end of the 3rd year there will be:
+1141 + 1141 * 0.02 + 50 => 1213
+
+It will need 3 entire years.
+More generally given parameters:
+
+p0, percent, aug (inhabitants coming or leaving each year), p (population to equal or surpass)
+
+the function nb_year should return n number of entire years needed to get a population greater or equal to p.
+
+aug is an integer, percent a positive or null floating number, p0 and p are positive integers (> 0)
+
+Examples:
+nb_year(1500, 5, 100, 5000) -> 15
+nb_year(1500000, 2.5, 10000, 2000000) -> 10"""
+
+
+def nb_year(p0, percent, aug, p):
+    population = p0
+    year = 0
+    while population < p:
+        population += population * percent*0.01 + aug
+        year += 1
+
+    return year + 1 if round(population) else year
