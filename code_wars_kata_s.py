@@ -2412,3 +2412,52 @@ def nb_year(p0, percent, aug, p):
         year += 1
 
     return year + 1 if round(population) else year
+
+#########################################################################################################
+##################################            67            #############################################
+#########################################################################################################
+
+"""Create a function that converts US dollars (USD) to Chinese Yuan (CNY) . The input is the amount of USD as an integer, and the output should be a string that states the amount of Yuan followed by 'Chinese Yuan'
+
+Examples (Input -> Output)
+15  -> '101.25 Chinese Yuan'
+465 -> '3138.75 Chinese Yuan'
+The conversion rate you should use is 6.75 CNY for every 1 USD. All numbers should be represented as a string with 2 decimal places. (e.g. "21.00" NOT "21.0" or "21")"""
+
+
+
+def usdcny(usd):
+    return f"{(usd * 6.75):.2f} Chinese Yuan"
+
+
+#########################################################################################################
+##################################            67            #############################################
+#########################################################################################################
+
+
+"""Wolves have been reintroduced to Great Britain. You are a sheep farmer, and are now plagued by wolves which pretend to be sheep. Fortunately, you are good at spotting them.
+
+Warn the sheep in front of the wolf that it is about to be eaten. Remember that you are standing at the front of the queue which is at the end of the array:
+
+[sheep, sheep, sheep, sheep, sheep, wolf, sheep, sheep]      (YOU ARE HERE AT THE FRONT OF THE QUEUE)
+   7      6      5      4      3            2      1
+If the wolf is the closest animal to you, return "Pls go away and stop eating my sheep". Otherwise, return "Oi! Sheep number N! You are about to be eaten by a wolf!" where N is the sheep's position in the queue.
+
+Note: there will always be exactly one wolf in the array.
+
+Examples
+Input: ["sheep", "sheep", "sheep", "wolf", "sheep"]
+Output: "Oi! Sheep number 1! You are about to be eaten by a wolf!"
+
+Input: ["sheep", "sheep", "wolf"]
+Output: "Pls go away and stop eating my sheep"""
+
+
+def warn_the_sheep(queue):
+    wolf_position = queue.index("wolf")  # Find where the wolf is
+
+    if wolf_position == len(queue) - 1:
+        return "Pls go away and stop eating my sheep"
+    else:
+        sheep_number = len(queue) - wolf_position - 1
+        return f"Oi! Sheep number {sheep_number}! You are about to be eaten by a wolf!"
