@@ -2461,3 +2461,21 @@ def warn_the_sheep(queue):
     else:
         sheep_number = len(queue) - wolf_position - 1
         return f"Oi! Sheep number {sheep_number}! You are about to be eaten by a wolf!"
+
+
+#########################################################################################################
+##################################            67            #############################################
+#########################################################################################################
+
+
+"""You need to write regex that will validate a password to make sure it meets the following criteria:
+
+At least six characters long
+contains a lowercase letter
+contains an uppercase letter
+contains a digit
+only contains alphanumeric characters (note that '_' is not alphanumeric)"""
+
+import re
+regex=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}"
+
