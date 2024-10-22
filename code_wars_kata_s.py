@@ -2492,3 +2492,48 @@ regex=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}"
 $              # end word
 """
 
+
+
+#########################################################################################################
+##################################            68            #############################################
+#########################################################################################################
+
+"""Trolls are attacking your comment section!
+
+A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+
+Your task is to write a function that takes a string and return a new string with all vowels removed.
+
+For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+Note: for this kata y isn't considered a vowel."""
+
+#first attempt
+def disemvowel(string_):
+    vowels='aeiou'
+    new_str = ''
+    for vowel in string_.lower():
+        if vowel in vowels:
+            new_str = string_.replace(vowel, '')
+    return new_str
+
+# Solution 1
+def disemvowel(string_):
+    for i in "aeiouAEIOU":
+        text = text.replace(i, "")
+    return text
+
+# Solution 2
+def disemvowel(string_):
+    vowels = 'aeiouAEIOU'
+    return ''.join([vowel for vowel in string_ if vowel not in vowels])
+
+
+# attempt with re
+import re
+
+
+import re
+def disemvowel(string_):
+    return re.sub('[aeiou]', '', string_, flags=re.IGNORECASE)
+print(disemvowel("This website is for losers LOL!"))
