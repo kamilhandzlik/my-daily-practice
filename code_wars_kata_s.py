@@ -2150,10 +2150,12 @@ Examples: (Input --> Output)
 20 --> "drink beer"
 30 --> "drink whisky"""
 
+
 # solution 1
 def people_with_age_drink(age):
-    instructions =[(14, "drink toddy"), (18, "drink coke"), (21, "drink beer"), (float('inf'), "drink whisky")]
+    instructions = [(14, "drink toddy"), (18, "drink coke"), (21, "drink beer"), (float('inf'), "drink whisky")]
     return next(drink for limit, drink in instructions if age < limit)
+
 
 # solution 2
 def people_with_age_drink(age):
@@ -2175,16 +2177,17 @@ Examples
 "Hi! Hi!" ---> "Hi! Hi"
 "Hi"      ---> "Hi"""
 
+
 # solution 1
 def remove(st):
     while st.endswith('!'):
         st = st[:-1]
     return st
 
+
 # solution 2
 def remove(s):
     return s.rstrip("!")
-
 
 
 #########################################################################################################
@@ -2201,22 +2204,31 @@ Note: Only lowercased English letters are tested
 
 """
 
+
 # Solution 1
 def position(alphabet):
-    poz_in_alph = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 'j': 10, 'k': 11, 'l': 12, 'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 'z': 26}
+    poz_in_alph = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 'j': 10, 'k': 11, 'l': 12,
+                   'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23,
+                   'x': 24, 'y': 25, 'z': 26}
     for letter, poz in poz_in_alph.items():
         if alphabet == letter:
             return f"Position of alphabet: {poz}"
 
+
 # Solution 2
 def position_polish(alphabet):
-    alphabet_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z', 'ź', 'ż']
+    alphabet_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                     'u', 'w', 'x', 'y', 'z', 'ź', 'ż']
     return f"Position of alphabet {alphabet_list.index(alphabet) + 1}"
 
+
 'abcdefghijklmnopqrstuwxyz'
+
+
 # Solution 3
 def position(alphabet):
     return f"Position of alphabet:{ord(alphabet) - ord('a') + 1}"
+
 
 #########################################################################################################
 ##################################            59            #############################################
@@ -2228,6 +2240,7 @@ Considering these factors, write a function that tells you if it is possible to 
 
 Function should return true if it is possible and false if not."""
 
+
 def zero_fuel(distance_to_pump, mpg, fuel_left):
     return True if fuel_left * mpg >= distance_to_pump else False
 
@@ -2238,9 +2251,9 @@ def zero_fuel(distance_to_pump, mpg, fuel_left):
 
 """Create a method that accepts a list and an item, and returns true if the item belongs to the list, otherwise false."""
 
+
 def include(arr, item):
     return item in arr
-
 
 
 #########################################################################################################
@@ -2258,7 +2271,6 @@ Example:
 
 def get_char(c):
     return chr(c)
-
 
 
 #########################################################################################################
@@ -2314,7 +2326,6 @@ def alphabet_war(fight):
         return "Let's fight again!"
 
 
-
 #########################################################################################################
 ##################################            63            #############################################
 #########################################################################################################
@@ -2333,12 +2344,14 @@ DECK = ['2S','3S','4S','5S','6S','7S','8S','9S','10S','JS','QS','KS','AS',
 ('3H') -> return 'hearts'
 ('3S') -> return 'spades'"""
 
+
 # Solution 1
 def define_suit(card):
-    suits = {'c': 'clubs','d': 'diamonds','h': 'hearts','s': 'spades'}
+    suits = {'c': 'clubs', 'd': 'diamonds', 'h': 'hearts', 's': 'spades'}
     for i, j in suits.items():
         if i in card.lower():
             return j
+
 
 # Solution 2
 def define_suit(card):
@@ -2360,6 +2373,7 @@ With "James" as the first name and "Stevens" as the last name should return "Jam
 def combine_names(first_name, last_name):
     return first_name + ' ' + last_name
 
+
 #########################################################################################################
 ##################################            65            #############################################
 #########################################################################################################
@@ -2372,8 +2386,10 @@ Create a function for the terminal game that takes the current position of the h
 Example:
 move(3, 6) should equal 15"""
 
+
 def move(position, roll):
-    return position + roll*2
+    return position + roll * 2
+
 
 #########################################################################################################
 ##################################            66            #############################################
@@ -2408,10 +2424,11 @@ def nb_year(p0, percent, aug, p):
     population = p0
     year = 0
     while population < p:
-        population += population * percent*0.01 + aug
+        population += population * percent * 0.01 + aug
         year += 1
 
     return year + 1 if round(population) else year
+
 
 #########################################################################################################
 ##################################            67            #############################################
@@ -2423,7 +2440,6 @@ Examples (Input -> Output)
 15  -> '101.25 Chinese Yuan'
 465 -> '3138.75 Chinese Yuan'
 The conversion rate you should use is 6.75 CNY for every 1 USD. All numbers should be represented as a string with 2 decimal places. (e.g. "21.00" NOT "21.0" or "21")"""
-
 
 
 def usdcny(usd):
@@ -2478,8 +2494,8 @@ only contains alphanumeric characters (note that '_' is not alphanumeric)"""
 
 # Solution
 import re
-regex=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}"
 
+regex = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}"
 
 # Ściągawka
 """
@@ -2491,8 +2507,6 @@ regex=r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}"
 {6,}           # at least 6 characters long
 $              # end word
 """
-
-
 
 #########################################################################################################
 ##################################            68            #############################################
@@ -2508,20 +2522,23 @@ For example, the string "This website is for losers LOL!" would become "Ths wbst
 
 Note: for this kata y isn't considered a vowel."""
 
-#first attempt
+
+# first attempt
 def disemvowel(string_):
-    vowels='aeiou'
+    vowels = 'aeiou'
     new_str = ''
     for vowel in string_.lower():
         if vowel in vowels:
             new_str = string_.replace(vowel, '')
     return new_str
 
+
 # Solution 1
 def disemvowel(string_):
     for i in "aeiouAEIOU":
         text = text.replace(i, "")
     return text
+
 
 # Solution 2
 def disemvowel(string_):
@@ -2533,7 +2550,72 @@ def disemvowel(string_):
 import re
 
 
-import re
 def disemvowel(string_):
     return re.sub('[aeiou]', '', string_, flags=re.IGNORECASE)
-print(disemvowel("This website is for losers LOL!"))
+
+
+#########################################################################################################
+##################################            69            #############################################
+#########################################################################################################
+
+"""
+Create a function that accepts a list/array and a number n, and returns a list/array of the first n elements from the list/array.
+
+If you need help, here's a reference:
+"""
+
+
+def take(arr, n):
+    return arr[:n]
+
+
+#########################################################################################################
+##################################            70            #############################################
+#########################################################################################################
+
+"""Deoxyribonucleic acid, DNA is the primary information storage molecule in biological systems. It is composed of four nucleic acid bases Guanine ('G'), Cytosine ('C'), Adenine ('A'), and Thymine ('T').
+
+Ribonucleic acid, RNA, is the primary messenger molecule in cells. RNA differs slightly from DNA its chemical structure and contains no Thymine. In RNA Thymine is replaced by another nucleic acid Uracil ('U').
+
+Create a function which translates a given DNA string into RNA.
+
+For example:
+
+"GCAT"  =>  "GCAU"
+The input string can be of arbitrary length - in particular, it may be empty. All input is guaranteed to be valid, i.e. each input string will only ever consist of 'G', 'C', 'A' and/or 'T'."""
+
+
+# Solution 1
+def dna_to_rna(dna):
+    return ''.join(['U' if nuclei == 'T' else nuclei for nuclei in dna])
+
+
+# Solution 2
+def dna_to_rna(dna):
+    return dna.replace('T', 'U')
+
+
+#########################################################################################################
+##################################            71            #############################################
+#########################################################################################################
+
+"""The purpose of this kata is to work out just how many bottles of duty free whiskey you would have to buy such that the savings over the normal high street price would effectively cover the cost of your holiday.
+
+You will be given the high street price (normPrice, in £ (Pounds)), the duty free discount (discount, in percent) and the cost of the holiday (in £).
+
+For example, if a bottle costs £10 normally and the duty free discount is 10%, you would save £1 per bottle. If your holiday will cost £500, you would have to purchase 500 bottles to save £500, so the answer you return should be 500.
+
+Another example: if a bottle costs £12 normally and the duty free discount is 50%, you would save £6 per bottle. If your holiday will cost £1000, you would have to purchase 166.66 bottles to save £1000, so your answer should be 166 bottles.
+
+All inputs will be integers. Please return an integer. Round down."""
+
+
+# For more precise mesurement but definetly worse for what you want to achive XD
+def duty_free(price, discount, holiday_cost):
+    return float(
+        f"You have to sell: {(holiday_cost / (price * discount * 0.01)):.2f} bottle{'s' if holiday_cost / (price * discount) else ''} of stuff.")
+
+
+# What is required to pass this exercise
+def duty_free(price, discount, holiday_cost):
+    return holiday_cost // (price * discount * 0.01)
