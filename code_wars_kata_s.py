@@ -2619,3 +2619,53 @@ def duty_free(price, discount, holiday_cost):
 # What is required to pass this exercise
 def duty_free(price, discount, holiday_cost):
     return holiday_cost // (price * discount * 0.01)
+
+
+
+
+#########################################################################################################
+##################################            72            #############################################
+#########################################################################################################
+
+"""Description:
+Remove all exclamation marks from sentence but ensure a exclamation mark at the end of string. For a beginner kata, you can assume that the input data is always a non empty string, no need to verify it.
+
+Examples
+"Hi!"     ---> "Hi!"
+"Hi!!!"   ---> "Hi!"
+"!Hi"     ---> "Hi!"
+"!Hi!"    ---> "Hi!"
+"Hi! Hi!" ---> "Hi Hi!"
+"Hi"      ---> "Hi!"""
+import unittest
+
+
+
+# def remove(st):
+#     return ' '.join(
+#         [char.replace('!', '') + '!' for char in st.split()]
+#     ) This didn;t work as intendet
+
+def remove(st):
+    cleaned = st.replace('!', '')
+    return cleaned + '!'
+
+def remove(st):
+    return  st.replace('!', '') + '!'
+
+tests = [
+    ["Hi!", "Hi!"],
+    ["Hi!!!", "Hi!"],
+    ["!Hi", "Hi!"],
+    ["!Hi!", "Hi!"],
+    ["Hi! Hi!", "Hi Hi!"],
+    ["Hi", "Hi!"],
+]
+
+class FastTest(unittest.TestCase):
+    def test_remove(self):
+        for inp, outp in tests:
+            self.assertEqual(remove(inp), outp)
+
+if __name__ == '__main__':
+    unittest.main()
