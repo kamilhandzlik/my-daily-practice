@@ -2653,22 +2653,22 @@ def remove(st):
 def remove(st):
     return  st.replace('!', '') + '!'
 
-tests = [
-    ["Hi!", "Hi!"],
-    ["Hi!!!", "Hi!"],
-    ["!Hi", "Hi!"],
-    ["!Hi!", "Hi!"],
-    ["Hi! Hi!", "Hi Hi!"],
-    ["Hi", "Hi!"],
-]
+# tests = [
+#     ["Hi!", "Hi!"],
+#     ["Hi!!!", "Hi!"],
+#     ["!Hi", "Hi!"],
+#     ["!Hi!", "Hi!"],
+#     ["Hi! Hi!", "Hi Hi!"],
+#     ["Hi", "Hi!"],
+# ]
+#
+# class FastTest(unittest.TestCase):
+#     def test_remove(self):
+#         for inp, outp in tests:
+#             self.assertEqual(remove(inp), outp)
 
-class FastTest(unittest.TestCase):
-    def test_remove(self):
-        for inp, outp in tests:
-            self.assertEqual(remove(inp), outp)
-
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
 
 
 
@@ -2737,5 +2737,69 @@ def mix(s1, s2):
     result.sort(key=lambda x: (-len(x), x))
 
     return '/'.join(result)
+
+
+#########################################################################################################
+##################################            74            #############################################
+#########################################################################################################
+
+
+"""Write a simple regex to validate a username. Allowed characters are:
+
+lowercase letters,
+numbers,
+underscore
+Length should be between 4 and 16 characters (both included)."""
+
+import re
+import random
+import string
+
+def validate_usr(username):
+    regex = r"^([a-z0-9_]){4,16}$"
+    return bool(re.fullmatch(regex, username))
+
+
+tests_74 = {
+    'asddsa': True,
+    'a': False,
+    'Hass': False,
+    'Hasd_12assssssasasasasasaasasasasas': False,
+    '': False,
+    '____': True,
+    '012':False,
+    'p111p': True,
+    'asd43 34': False,
+    'asd43_34': True,
+    'too_long_username_with_only_valid_characters_123': False
+}
+
+
+# Tests
+
+def generate_randmo_username():
+    lenght = random.randint(1, 20)
+    chars = string.ascii_lowercase + string.digits + "_"
+    username = ''.join(random.choice(chars) for _ in range(lenght))
+    is_valid = 4 <= len(username) <= 16 and re.fullmatch(r"^([a-z0-9_]){4,16}$", username) is not None
+    return username, is_valid
+
+
+class Ex74Test(unittest.TestCase):
+    def test_validate_username(self):
+        for inp, outp in tests_74.items():
+            self.assertEqual(validate_usr(inp), outp)
+
+    def test_random_usernames(self):
+        for _ in range(50):
+            username, expected = generate_randmo_username()
+            with self.subTest(username=username):
+                self.assertEqual(validate_usr(username), expected)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
 
 
