@@ -42,7 +42,7 @@ if you want to translate, please ask before translating."""
 
 
 def dir_reduc(arr):
-    opposites = {'NORTH': 'SOUTH', 'SOUTH': 'NORTH', 'WEST': 'EAST', 'EAST': 'WEST'}
+    opposites = {"NORTH": "SOUTH", "SOUTH": "NORTH", "WEST": "EAST", "EAST": "WEST"}
     stack = []
 
     for direction in arr:
@@ -95,11 +95,11 @@ replace("ABCDE") === "!BCD!"""
 
 
 def replace_exclamation(st):
-    vowels = 'aeiouAEIOU'
-    result = ''
+    vowels = "aeiouAEIOU"
+    result = ""
     for char in st:
         if char in vowels:
-            result += '!'
+            result += "!"
         else:
             result += char
     return result
@@ -132,14 +132,7 @@ expressionsMatter(9, 1, 1) ==> 18, because 9 * (1 + 1) = 18."""
 
 
 def expressions_matter(a, b, c):
-    return max(
-        a + b + c,
-        a * b * c,
-        a + b * c,
-        (a + b) * c,
-        a * (b + c),
-        (a * b) + c
-    )
+    return max(a + b + c, a * b * c, a + b * c, (a + b) * c, a * (b + c), (a * b) + c)
 
 
 #########################################################################################################
@@ -165,9 +158,9 @@ def duplicate_encode(word):
     result = ""
     for char in word:
         if word.count(char) > 1:
-            result += ')'
+            result += ")"
         else:
-            result += '('
+            result += "("
     return result
 
 
@@ -188,12 +181,12 @@ Note: String will have at least one element; words will always be separated by a
 
 
 def add_length(str_):
-    sentence = str_.split(' ')
+    sentence = str_.split(" ")
     result = []
 
     for word in sentence:
         length = len(word)
-        with_length = f'{word} {length}'
+        with_length = f"{word} {length}"
         result.append(with_length)
 
     return result
@@ -261,6 +254,7 @@ def simple_multiplication(number):
 
 # Rozwiązanie 2
 
+
 def simple_multiplication(number):
     return number * 9 if number % 2 != 0 else number * 8
 
@@ -302,7 +296,7 @@ def simple_multiplication(number):
 
 
 def square(n):
-    return n ** 2
+    return n**2
 
 
 #########################################################################################################
@@ -405,6 +399,7 @@ def enough(cap, on, wait):
 
 
 # Solution 2
+
 
 def enough(cap, on, wait):
     return (on + wait) - cap if (wait + on) > cap else 0
@@ -633,16 +628,17 @@ If this one is an alligator (case-insensitive) return small otherwise return wid
 
 # solution 1
 
+
 def mouth_size(animal):
     if animal.lower() == "alligator":
-        return 'small'
+        return "small"
     else:
-        return 'wide'
+        return "wide"
 
 
 # solution 2
 def mouth_size(animal):
-    return 'small' if animal.lower() == "alligator" else 'wide'
+    return "small" if animal.lower() == "alligator" else "wide"
 
 
 #########################################################################################################
@@ -736,7 +732,10 @@ class Fighter(object):
         self.health = health
         self.damage_per_attack = damage_per_attack
 
-    def __str__(self): return "Fighter({}, {}, {})".format(self.name, self.health, self.damage_per_attack)
+    def __str__(self):
+        return "Fighter({}, {}, {})".format(
+            self.name, self.health, self.damage_per_attack
+        )
 
     __repr__ = __str__
 
@@ -788,7 +787,7 @@ def string_clean(s):
 
 # solution 2
 def string_clean(s):
-    return ''.join(x for x in s if not x.isdigit())
+    return "".join(x for x in s if not x.isdigit())
 
 
 #########################################################################################################
@@ -915,7 +914,7 @@ The test cases contain numbers only by mistake.
 
 # solution 1
 def correct(s):
-    mistakes = {'5': 'S', '0': 'O', '1': 'I'}
+    mistakes = {"5": "S", "0": "O", "1": "I"}
 
     for mistake, proper in mistakes.items():
         s = s.replace(mistake, proper)
@@ -1135,7 +1134,7 @@ def is_palindrome(s):
         second_half_reversed = s[middle_index:][::-1]
     else:
         first_half = s[:middle_index]
-        second_half_reversed = s[middle_index + 1:][::-1]
+        second_half_reversed = s[middle_index + 1 :][::-1]
 
     return first_half == second_half_reversed
 
@@ -1145,8 +1144,11 @@ def is_palindrome(s):
 def is_palindrome(s):
     s = s.lower()
     middle_index = len(s) // 2
-    return s[:middle_index] == s[middle_index:][::-1] if len(s) % 2 == 0 else s[:middle_index] == s[middle_index + 1:][
-                                                                                                  ::-1]
+    return (
+        s[:middle_index] == s[middle_index:][::-1]
+        if len(s) % 2 == 0
+        else s[:middle_index] == s[middle_index + 1 :][::-1]
+    )
 
 
 # XD
@@ -1174,11 +1176,15 @@ Examples:
 
 # first solution
 def hello(name="World"):
-    return f"Hello, World!" if name == '' or name == None else f"Hello, {name.lower().capitalize()}!"
+    return (
+        f"Hello, World!"
+        if name == "" or name == None
+        else f"Hello, {name.lower().capitalize()}!"
+    )
 
 
 # second solution
-def hello(name=''):
+def hello(name=""):
     return f"Hello, {name.title() or 'World'}!"
 
 
@@ -1285,7 +1291,7 @@ ball2.ball_type  #=> "super"""
 
 
 class Ball:
-    def __init__(self, ball_type='regular'):
+    def __init__(self, ball_type="regular"):
         self.ball_type = ball_type
 
 
@@ -1345,7 +1351,7 @@ def decrypt(encrypted_text, n):
                 decrypted_text.append(odd_chars[odd_index])
                 odd_index += 1
 
-        encrypted_text = ''.join(decrypted_text)
+        encrypted_text = "".join(decrypted_text)
 
     return encrypted_text
 
@@ -1405,13 +1411,13 @@ s = "123456" gives "234561"."""
 
 
 def rev_rot(strng, sz):
-    if sz <= 0 or strng == '' or sz > len(strng):
+    if sz <= 0 or strng == "" or sz > len(strng):
         return ""
 
     chunks = []
 
     for i in range(0, len(strng), sz):
-        chunk = strng[i:i + sz]
+        chunk = strng[i : i + sz]
 
         if len(chunk) == sz:
             chunk_sum = sum(int(digit) for digit in chunk)
@@ -1421,7 +1427,7 @@ def rev_rot(strng, sz):
             else:
                 chunks.append(chunk[1:] + chunk[0])
 
-    return ''.join(chunks)
+    return "".join(chunks)
 
 
 #########################################################################################################
@@ -1446,7 +1452,7 @@ def sum_mul(n, m):
         return 0
 
     if m <= n or m <= 0:
-        return 'INVALID'
+        return "INVALID"
 
     result = 0
     multiple_of_n = n
@@ -1520,7 +1526,7 @@ def mod(a, b):
 
 
 def exponent(a, b):
-    return a ** b
+    return a**b
 
 
 def subt(a, b):
@@ -1601,10 +1607,7 @@ def arithmetic(a, b, operator):
 
 # Solutin 2 without if statements
 def arithmetic(a, b, operator):
-    operations = {"add": a + b,
-                  "subtract": a - b,
-                  "multiply": a * b,
-                  "divide": a / b}
+    operations = {"add": a + b, "subtract": a - b, "multiply": a * b, "divide": a / b}
     return operations[operator]
 
 
@@ -1637,7 +1640,7 @@ def nb_dig(n, d):
     d = str(d)
 
     for k in range(n + 1):
-        squared = str(k ** 2)
+        squared = str(k**2)
         count += squared.count(d)
 
     return count
@@ -1684,11 +1687,11 @@ def expanded_form(num):
     num = str(num)
 
     for i, j in enumerate(num[::-1]):
-        if j != '0':
-            numbers.append(str(int(j) * (10 ** i)))
+        if j != "0":
+            numbers.append(str(int(j) * (10**i)))
 
     numbers = numbers[::-1]
-    return (' + ').join(numbers)
+    return (" + ").join(numbers)
 
 
 # Solution 2 this one was made by user rafiathallah3 all credits go to him. Yes I took it but it's to impressive to be left alone and for me to have chance about forgeting about this masterpice.
@@ -1724,7 +1727,12 @@ def expanded_form(num):
     """
 
     return " + ".join(
-        [str(int(v) * int("1" + "0" * (len(str(num)) - (i + 1)))) for i, v in enumerate(str(num)) if v != "0"])
+        [
+            str(int(v) * int("1" + "0" * (len(str(num)) - (i + 1))))
+            for i, v in enumerate(str(num))
+            if v != "0"
+        ]
+    )
 
 
 #########################################################################################################
@@ -1799,7 +1807,7 @@ def closest_strip(strip, d):
 def closest_recursive(points_x, points_y):
     # if we have less than four points we bruteforce the problem
     if len(points_x) <= 3:
-        min_dist = float('inf')
+        min_dist = float("inf")
         closest_pair = None
         for i in range(len(points_x)):
             for j in range(i + 1, len(points_x)):
@@ -1858,7 +1866,7 @@ points = [
     (6, 3),  # D
     (6, 7),  # E
     (7, 4),  # F
-    (7, 9)  # G
+    (7, 9),  # G
 ]
 result = closest_pair(points)
 
@@ -1882,7 +1890,7 @@ title_case('THE WIND IN THE WILLOWS', 'The In') # should return: 'The Wind in th
 title_case('the quick brown fox') # should return: 'The Quick Brown Fox'"""
 
 
-def title_case(title: str, minor_words: str = ''):
+def title_case(title: str, minor_words: str = ""):
     minor_words = minor_words.lower().split() if minor_words else []
     words = title.split()
     result = []
@@ -1895,7 +1903,7 @@ def title_case(title: str, minor_words: str = ''):
         else:
             result.append(word.capitalize())
 
-    return ' '.join(result)
+    return " ".join(result)
 
 
 #########################################################################################################
@@ -1978,7 +1986,7 @@ def calculate_age(year_of_birth, current_year):
     if calculated_year > 0:
         return f"You are {calculated_year} {'years' if calculated_year > 1 or calculated_year * (-1) > 1 else 'year'} old."
     elif current_year == year_of_birth:
-        return 'You were born this very year!'
+        return "You were born this very year!"
     else:
         return f"You will be born in {calculated_year * (-1)} {'years' if calculated_year > 1 or calculated_year * (-1) > 1 else 'year'}."
 
@@ -1986,8 +1994,16 @@ def calculate_age(year_of_birth, current_year):
 # Solution 2
 def calculate_age(year_of_birth, current_year):
     diff = abs(current_year - year_of_birth)
-    age = '#d year%s' % (diff, 's' * bool(diff - 1))
-    return "You were born this very year!" if not diff else "You are %s old." % age if current_year > year_of_birth else "You will be born in %s." % age
+    age = "#d year%s" % (diff, "s" * bool(diff - 1))
+    return (
+        "You were born this very year!"
+        if not diff
+        else (
+            "You are %s old." % age
+            if current_year > year_of_birth
+            else "You will be born in %s." % age
+        )
+    )
 
 
 #########################################################################################################
@@ -1999,13 +2015,13 @@ def calculate_age(year_of_birth, current_year):
 
 # Solution 1
 def bin_to_decimal(inp):
-    if not all(c in '01' for c in inp):
-        raise ValueError('The input is not a valid binary number')
+    if not all(c in "01" for c in inp):
+        raise ValueError("The input is not a valid binary number")
 
     result = 0
 
     for pos, num in enumerate(reversed(inp)):
-        if num == '1':
+        if num == "1":
             i = 2 ** int(pos)
             result += i
 
@@ -2083,13 +2099,13 @@ def diamond(n):
     for i in range(mid + 1):
         spaces = mid - i
         stars = 2 * i + 1
-        result += ' ' * spaces + '*' * stars + '\n'
+        result += " " * spaces + "*" * stars + "\n"
 
     # Down half of diamond
     for i in range(mid - 1, -1, -1):
         spaces = mid - i
         stars = 2 * i + 1
-        result += ' ' * spaces + '*' * stars + '\n'
+        result += " " * spaces + "*" * stars + "\n"
 
     return result
 
@@ -2119,7 +2135,7 @@ Note: In the C and NASM languages you are given the third parameter which is the
 
 
 def data_reverse(data):
-    segments = [data[i:i + 8] for i in range(0, len(data), 8)]
+    segments = [data[i : i + 8] for i in range(0, len(data), 8)]
     reversed_segments = segments[::-1]
     result = [bit for segment in reversed_segments for bit in segment]
     return result
@@ -2153,13 +2169,22 @@ Examples: (Input --> Output)
 
 # solution 1
 def people_with_age_drink(age):
-    instructions = [(14, "drink toddy"), (18, "drink coke"), (21, "drink beer"), (float('inf'), "drink whisky")]
+    instructions = [
+        (14, "drink toddy"),
+        (18, "drink coke"),
+        (21, "drink beer"),
+        (float("inf"), "drink whisky"),
+    ]
     return next(drink for limit, drink in instructions if age < limit)
 
 
 # solution 2
 def people_with_age_drink(age):
-    return 'drink ' + ('toddy' if age < 14 else 'coke' if age < 18 else 'beer' if age < 21 else 'whisky')
+    return "drink " + (
+        "toddy"
+        if age < 14
+        else "coke" if age < 18 else "beer" if age < 21 else "whisky"
+    )
 
 
 #########################################################################################################
@@ -2180,7 +2205,7 @@ Examples
 
 # solution 1
 def remove(st):
-    while st.endswith('!'):
+    while st.endswith("!"):
         st = st[:-1]
     return st
 
@@ -2207,9 +2232,34 @@ Note: Only lowercased English letters are tested
 
 # Solution 1
 def position(alphabet):
-    poz_in_alph = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 'j': 10, 'k': 11, 'l': 12,
-                   'm': 13, 'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23,
-                   'x': 24, 'y': 25, 'z': 26}
+    poz_in_alph = {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6,
+        "g": 7,
+        "h": 8,
+        "i": 9,
+        "j": 10,
+        "k": 11,
+        "l": 12,
+        "m": 13,
+        "n": 14,
+        "o": 15,
+        "p": 16,
+        "q": 17,
+        "r": 18,
+        "s": 19,
+        "t": 20,
+        "u": 21,
+        "v": 22,
+        "w": 23,
+        "x": 24,
+        "y": 25,
+        "z": 26,
+    }
     for letter, poz in poz_in_alph.items():
         if alphabet == letter:
             return f"Position of alphabet: {poz}"
@@ -2217,12 +2267,39 @@ def position(alphabet):
 
 # Solution 2
 def position_polish(alphabet):
-    alphabet_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-                     'u', 'w', 'x', 'y', 'z', 'ź', 'ż']
+    alphabet_list = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "w",
+        "x",
+        "y",
+        "z",
+        "ź",
+        "ż",
+    ]
     return f"Position of alphabet {alphabet_list.index(alphabet) + 1}"
 
 
-'abcdefghijklmnopqrstuwxyz'
+"abcdefghijklmnopqrstuwxyz"
 
 
 # Solution 3
@@ -2306,8 +2383,8 @@ AlphabetWar("wwwwwwz");  //=> Left side wins!"""
 
 
 def alphabet_war(fight):
-    left_side = {'w': 4, 'p': 3, 'b': 2, 's': 1}
-    right_side = {'m': 4, 'q': 3, 'd': 2, 'z': 1}
+    left_side = {"w": 4, "p": 3, "b": 2, "s": 1}
+    right_side = {"m": 4, "q": 3, "d": 2, "z": 1}
 
     count_left = 0
     count_right = 0
@@ -2347,7 +2424,7 @@ DECK = ['2S','3S','4S','5S','6S','7S','8S','9S','10S','JS','QS','KS','AS',
 
 # Solution 1
 def define_suit(card):
-    suits = {'c': 'clubs', 'd': 'diamonds', 'h': 'hearts', 's': 'spades'}
+    suits = {"c": "clubs", "d": "diamonds", "h": "hearts", "s": "spades"}
     for i, j in suits.items():
         if i in card.lower():
             return j
@@ -2355,7 +2432,7 @@ def define_suit(card):
 
 # Solution 2
 def define_suit(card):
-    return {'C': 'clubs', 'S': 'spades', 'D': 'diamonds', 'H': 'hearts'}[card[-1]]
+    return {"C": "clubs", "S": "spades", "D": "diamonds", "H": "hearts"}[card[-1]]
 
 
 #########################################################################################################
@@ -2371,7 +2448,7 @@ With "James" as the first name and "Stevens" as the last name should return "Jam
 
 
 def combine_names(first_name, last_name):
-    return first_name + ' ' + last_name
+    return first_name + " " + last_name
 
 
 #########################################################################################################
@@ -2525,11 +2602,11 @@ Note: for this kata y isn't considered a vowel."""
 
 # first attempt
 def disemvowel(string_):
-    vowels = 'aeiou'
-    new_str = ''
+    vowels = "aeiou"
+    new_str = ""
     for vowel in string_.lower():
         if vowel in vowels:
-            new_str = string_.replace(vowel, '')
+            new_str = string_.replace(vowel, "")
     return new_str
 
 
@@ -2542,8 +2619,8 @@ def disemvowel(string_):
 
 # Solution 2
 def disemvowel(string_):
-    vowels = 'aeiouAEIOU'
-    return ''.join([vowel for vowel in string_ if vowel not in vowels])
+    vowels = "aeiouAEIOU"
+    return "".join([vowel for vowel in string_ if vowel not in vowels])
 
 
 # attempt with re
@@ -2551,7 +2628,7 @@ import re
 
 
 def disemvowel(string_):
-    return re.sub('[aeiou]', '', string_, flags=re.IGNORECASE)
+    return re.sub("[aeiou]", "", string_, flags=re.IGNORECASE)
 
 
 #########################################################################################################
@@ -2587,12 +2664,12 @@ The input string can be of arbitrary length - in particular, it may be empty. Al
 
 # Solution 1
 def dna_to_rna(dna):
-    return ''.join(['U' if nuclei == 'T' else nuclei for nuclei in dna])
+    return "".join(["U" if nuclei == "T" else nuclei for nuclei in dna])
 
 
 # Solution 2
 def dna_to_rna(dna):
-    return dna.replace('T', 'U')
+    return dna.replace("T", "U")
 
 
 #########################################################################################################
@@ -2613,14 +2690,13 @@ All inputs will be integers. Please return an integer. Round down."""
 # For more precise mesurement but definetly worse for what you want to achive XD
 def duty_free(price, discount, holiday_cost):
     return float(
-        f"You have to sell: {(holiday_cost / (price * discount * 0.01)):.2f} bottle{'s' if holiday_cost / (price * discount) else ''} of stuff.")
+        f"You have to sell: {(holiday_cost / (price * discount * 0.01)):.2f} bottle{'s' if holiday_cost / (price * discount) else ''} of stuff."
+    )
 
 
 # What is required to pass this exercise
 def duty_free(price, discount, holiday_cost):
     return holiday_cost // (price * discount * 0.01)
-
-
 
 
 #########################################################################################################
@@ -2640,18 +2716,20 @@ Examples
 import unittest
 
 
-
 # def remove(st):
 #     return ' '.join(
 #         [char.replace('!', '') + '!' for char in st.split()]
 #     ) This didn;t work as intendet
 
-def remove(st):
-    cleaned = st.replace('!', '')
-    return cleaned + '!'
 
 def remove(st):
-    return  st.replace('!', '') + '!'
+    cleaned = st.replace("!", "")
+    return cleaned + "!"
+
+
+def remove(st):
+    return st.replace("!", "") + "!"
+
 
 # tests = [
 #     ["Hi!", "Hi!"],
@@ -2669,7 +2747,6 @@ def remove(st):
 
 # if __name__ == '__main__':
 #     unittest.main()
-
 
 
 #########################################################################################################
@@ -2717,6 +2794,7 @@ mix(s1, s2) --> "1:mmmmmm/E:nnnnnn/1:aaaa/1:hhh/2:yyy/2:dd/2:ff/2:ii/2:rr/E:ee/E
 
 from collections import Counter
 
+
 def mix(s1, s2):
     count1 = Counter([char for char in s1 if char.islower()])
     count2 = Counter([char for char in s2 if char.islower()])
@@ -2736,7 +2814,7 @@ def mix(s1, s2):
 
     result.sort(key=lambda x: (-len(x), x))
 
-    return '/'.join(result)
+    return "/".join(result)
 
 
 #########################################################################################################
@@ -2755,33 +2833,38 @@ import re
 import random
 import string
 
+
 def validate_usr(username):
     regex = r"^([a-z0-9_]){4,16}$"
     return bool(re.fullmatch(regex, username))
 
 
 tests_74 = {
-    'asddsa': True,
-    'a': False,
-    'Hass': False,
-    'Hasd_12assssssasasasasasaasasasasas': False,
-    '': False,
-    '____': True,
-    '012':False,
-    'p111p': True,
-    'asd43 34': False,
-    'asd43_34': True,
-    'too_long_username_with_only_valid_characters_123': False
+    "asddsa": True,
+    "a": False,
+    "Hass": False,
+    "Hasd_12assssssasasasasasaasasasasas": False,
+    "": False,
+    "____": True,
+    "012": False,
+    "p111p": True,
+    "asd43 34": False,
+    "asd43_34": True,
+    "too_long_username_with_only_valid_characters_123": False,
 }
 
 
 # Tests
 
+
 def generate_randmo_username():
     lenght = random.randint(1, 20)
     chars = string.ascii_lowercase + string.digits + "_"
-    username = ''.join(random.choice(chars) for _ in range(lenght))
-    is_valid = 4 <= len(username) <= 16 and re.fullmatch(r"^([a-z0-9_]){4,16}$", username) is not None
+    username = "".join(random.choice(chars) for _ in range(lenght))
+    is_valid = (
+        4 <= len(username) <= 16
+        and re.fullmatch(r"^([a-z0-9_]){4,16}$", username) is not None
+    )
     return username, is_valid
 
 
@@ -2797,9 +2880,5 @@ class Ex74Test(unittest.TestCase):
                 self.assertEqual(validate_usr(username), expected)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
-
-
-
