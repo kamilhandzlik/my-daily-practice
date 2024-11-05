@@ -115,6 +115,13 @@
                 </li>
             </ul>
         </div>
+        <section class="home-section">
+            <div class="home-content">
+                <i class="bx bx-menu"></i>
+                <span class="text">Drop down sidebar</span>
+                <!-- TODO in project change to prpper name like everything else XD -->
+            </div>
+        </section>
         <script>
 
             let arrow = document.querySelectorAll(".arrow");
@@ -122,10 +129,16 @@
                 arrow[i].addEventListener("click", (e)=>{
                     console.log(arrow);
                 let arrowParent = e.target.parentElement.parentElement;
-                console.log(arrowParent)
                 arrowParent.classList.toggle("showMenu");
                 });
             }
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn)
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });
         </script>
     </body>
     <!--{% block content %}{% endblock %}-->

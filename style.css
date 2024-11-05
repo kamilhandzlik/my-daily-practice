@@ -14,6 +14,11 @@
     height: 100%;
     width: 260px;
     background: #11101d;
+    /* z-index: 100; */
+    /* transition: all 0.5s ease; */
+}
+.sidebar.close{
+  width: 78;
 }
 .sidebar .logo-details{
   height: 60px;
@@ -33,10 +38,15 @@
   font-size:  22px;
   color: #fff;
   font-weight: 600;
+  transition: 0.3s ease;
+}
+.sidebar.close .logo-details .logo_name{
+  opacity: 1;
+  pointer-events: none;
 }
 .sidebar .nav-links{
   height: 100%;
-  padding: 30px;
+  padding: 30px 0 150px 0;
   overflow: auto;
 }
 .sidebar .nav-links::-webkit-scrollbar{
@@ -57,7 +67,7 @@
 }
 .sidebar .nav-links li i{
   height: 50px;
-  min-width: 50px;
+  min-width: 78px;
   text-align: center;
   line-height: 50px;
   color: #fff;
@@ -160,5 +170,35 @@
 }
 .sidebar.profile-details .job{
   font-size: 12px;
+}
+.home-section{
+  position: relative;
+  background: #E4E9F7;
+  /* zobacz czy przy tym będzie się wogule wyświetlać co kolwie na stronie w django jak nie to zmienieamy wysokość oraz kolor */
+  height: 100vh;
+  left: 260px;
+  width: calc(100% - 260px);
+  transition: all 0.5s ease;
+}
+.sidebar.close ~ .home-section{
+  left: 78px;
+  width: calc(100% - 78px);
+}
+.home-section .home-content{
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.home-section .home-content .bx-menu,
+.home-section .home-content .text{
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu{
+  margin: 0 15px;
+}
+.home-section .home-content .text{
+  font-size: 26px;
+  font-weight: 600;
 }
 
