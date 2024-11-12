@@ -296,7 +296,7 @@ def simple_multiplication(number):
 
 
 def square(n):
-    return n**2
+    return n ** 2
 
 
 #########################################################################################################
@@ -1134,7 +1134,7 @@ def is_palindrome(s):
         second_half_reversed = s[middle_index:][::-1]
     else:
         first_half = s[:middle_index]
-        second_half_reversed = s[middle_index + 1 :][::-1]
+        second_half_reversed = s[middle_index + 1:][::-1]
 
     return first_half == second_half_reversed
 
@@ -1147,7 +1147,7 @@ def is_palindrome(s):
     return (
         s[:middle_index] == s[middle_index:][::-1]
         if len(s) % 2 == 0
-        else s[:middle_index] == s[middle_index + 1 :][::-1]
+        else s[:middle_index] == s[middle_index + 1:][::-1]
     )
 
 
@@ -1417,7 +1417,7 @@ def rev_rot(strng, sz):
     chunks = []
 
     for i in range(0, len(strng), sz):
-        chunk = strng[i : i + sz]
+        chunk = strng[i: i + sz]
 
         if len(chunk) == sz:
             chunk_sum = sum(int(digit) for digit in chunk)
@@ -1526,7 +1526,7 @@ def mod(a, b):
 
 
 def exponent(a, b):
-    return a**b
+    return a ** b
 
 
 def subt(a, b):
@@ -1640,7 +1640,7 @@ def nb_dig(n, d):
     d = str(d)
 
     for k in range(n + 1):
-        squared = str(k**2)
+        squared = str(k ** 2)
         count += squared.count(d)
 
     return count
@@ -1688,7 +1688,7 @@ def expanded_form(num):
 
     for i, j in enumerate(num[::-1]):
         if j != "0":
-            numbers.append(str(int(j) * (10**i)))
+            numbers.append(str(int(j) * (10 ** i)))
 
     numbers = numbers[::-1]
     return (" + ").join(numbers)
@@ -2135,7 +2135,7 @@ Note: In the C and NASM languages you are given the third parameter which is the
 
 
 def data_reverse(data):
-    segments = [data[i : i + 8] for i in range(0, len(data), 8)]
+    segments = [data[i: i + 8] for i in range(0, len(data), 8)]
     reversed_segments = segments[::-1]
     result = [bit for segment in reversed_segments for bit in segment]
     return result
@@ -2853,31 +2853,98 @@ tests_74 = {
     "too_long_username_with_only_valid_characters_123": False,
 }
 
-
 # Tests
 
 
-def generate_randmo_username():
-    lenght = random.randint(1, 20)
-    chars = string.ascii_lowercase + string.digits + "_"
-    username = "".join(random.choice(chars) for _ in range(lenght))
-    is_valid = (
-        4 <= len(username) <= 16
-        and re.fullmatch(r"^([a-z0-9_]){4,16}$", username) is not None
-    )
-    return username, is_valid
+# def generate_randmo_username():
+#     lenght = random.randint(1, 20)
+#     chars = string.ascii_lowercase + string.digits + "_"
+#     username = "".join(random.choice(chars) for _ in range(lenght))
+#     is_valid = (
+#         4 <= len(username) <= 16
+#         and re.fullmatch(r"^([a-z0-9_]){4,16}$", username) is not None
+#     )
+#     return username, is_valid
 
 
-class Ex74Test(unittest.TestCase):
-    def test_validate_username(self):
-        for inp, outp in tests_74.items():
-            self.assertEqual(validate_usr(inp), outp)
+# class Ex74Test(unittest.TestCase):
+#     def test_validate_username(self):
+#         for inp, outp in tests_74.items():
+#             self.assertEqual(validate_usr(inp), outp)
+#
+#     def test_random_usernames(self):
+#         for _ in range(50):
+#             username, expected = generate_randmo_username()
+#             with self.subTest(username=username):
+#                 self.assertEqual(validate_usr(username), expected)
+#
 
-    def test_random_usernames(self):
+# if __name__ == "__main__":
+#     unittest.main()
+
+#########################################################################################################
+##################################            74            #############################################
+#########################################################################################################
+
+"""Task Description
+You're re-designing a blog, and the blog's posts have the Weekday Month Day, time format for showing the date and time when a post was made, e.g., Friday May 2, 7pm.
+
+You're running out of screen real estate, and on some pages you want to display a shorter format, Weekday Month Day that omits the time.
+
+Write a function that takes the website date/time in its original string format and returns the shortened format.
+
+Input
+Input will always be a string, e.g., "Friday May 2, 7pm". 
+
+Output
+Output will be the shortened string, e.g., "Friday May 2"."""
+
+import datetime
+import random
+
+
+# Version 1
+def shorten_to_date(long_date):
+    long_date = long_date.replace(',', '')
+    short_date = []
+    for word in long_date.split(" "):
+        if 'pm' not in word and 'am' not in word:
+            short_date.append(word)
+
+    return (" ").join(short_date)
+
+
+# Version 2
+def shorten_to_date(long_date):
+    short_date = long_date.split(',')[0]
+    return short_date
+
+
+def generate_random_date():
+    random_date = datetime.datetime.strptime(f"{random.randint(1, 365)} 2024", "%j %Y")
+    weekday = random_date.strftime("%A")
+    month_day = random_date.strftime("%B %d")
+    hour = random.randint(1, 12)
+    period = random.choice(['am', 'pm'])
+
+    formated_date = f"{weekday} {month_day}, {hour}{period}"
+
+    validate_date = formated_date.split(',')[0]
+    return formated_date, validate_date
+
+
+class ShortDateTest(unittest.TestCase):
+    def test_validate_date(self):
+        self.assertEqual(shorten_to_date("Monday February 2, 8pm"), "Monday February 2")
+        self.assertEqual(shorten_to_date("Tuesday May 29, 8pm"), "Tuesday May 29")
+        self.assertEqual(shorten_to_date("Wed September 1, 3am"), "Wed September 1")
+        self.assertEqual(shorten_to_date("Friday May 2, 9am"), "Friday May 2")
+        self.assertEqual(shorten_to_date("Tuesday January 29, 10pm"), "Tuesday January 29")
+
+    def test_random_date(self):
         for _ in range(50):
-            username, expected = generate_randmo_username()
-            with self.subTest(username=username):
-                self.assertEqual(validate_usr(username), expected)
+            formated_date, validate_date = generate_random_date()
+            self.assertEqual(shorten_to_date(formated_date), validate_date)
 
 
 if __name__ == "__main__":

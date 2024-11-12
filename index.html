@@ -2,13 +2,8 @@
 <html lang="pl" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <title
-            Drop
-            Down
-            Sidebar
-            Menu
-        ></title>
-        <link rel="stylesheet" href="style.css">
+        <title>Strona główna</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
         <!--    Adjust to project -->
         <!--    Boxicons CDN Link-->
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -110,6 +105,7 @@
                             <!-- TODO in django projects change to {{user.name}} -->
                         </div>
                         <i class="bx bx-log-out"></i>
+                        <a href="{% url 'logout' %}">Wyloguj</a>
                         <!-- TODO in project change to working logout -->
                     </div>
                 </li>
