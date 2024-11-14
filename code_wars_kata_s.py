@@ -2871,19 +2871,19 @@ tests_74 = {
 #     def test_validate_username(self):
 #         for inp, outp in tests_74.items():
 #             self.assertEqual(validate_usr(inp), outp)
-#
+
 #     def test_random_usernames(self):
 #         for _ in range(50):
 #             username, expected = generate_randmo_username()
 #             with self.subTest(username=username):
 #                 self.assertEqual(validate_usr(username), expected)
-#
+
 
 # if __name__ == "__main__":
 #     unittest.main()
 
 #########################################################################################################
-##################################            74            #############################################
+##################################            75            #############################################
 #########################################################################################################
 
 """Task Description
@@ -2933,18 +2933,120 @@ def generate_random_date():
     return formated_date, validate_date
 
 
-class ShortDateTest(unittest.TestCase):
-    def test_validate_date(self):
-        self.assertEqual(shorten_to_date("Monday February 2, 8pm"), "Monday February 2")
-        self.assertEqual(shorten_to_date("Tuesday May 29, 8pm"), "Tuesday May 29")
-        self.assertEqual(shorten_to_date("Wed September 1, 3am"), "Wed September 1")
-        self.assertEqual(shorten_to_date("Friday May 2, 9am"), "Friday May 2")
-        self.assertEqual(shorten_to_date("Tuesday January 29, 10pm"), "Tuesday January 29")
+# class ShortDateTest(unittest.TestCase):
+#     def test_validate_date(self):
+#         self.assertEqual(shorten_to_date("Monday February 2, 8pm"), "Monday February 2")
+#         self.assertEqual(shorten_to_date("Tuesday May 29, 8pm"), "Tuesday May 29")
+#         self.assertEqual(shorten_to_date("Wed September 1, 3am"), "Wed September 1")
+#         self.assertEqual(shorten_to_date("Friday May 2, 9am"), "Friday May 2")
+#         self.assertEqual(shorten_to_date("Tuesday January 29, 10pm"), "Tuesday January 29")
 
-    def test_random_date(self):
+#     def test_random_date(self):
+#         for _ in range(50):
+#             formated_date, validate_date = generate_random_date()
+#             self.assertEqual(shorten_to_date(formated_date), validate_date)
+
+
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+#########################################################################################################
+##################################            76            #############################################
+#########################################################################################################
+
+"""Given an array of integers, return a new array with each value doubled.
+
+For example:
+
+[1, 2, 3] --> [2, 4, 6]"""
+
+
+def maps(a):
+    return [i * 2 for i in a]
+
+
+#########################################################################################################
+##################################            77            #############################################
+#########################################################################################################
+
+"""Create a combat function that takes the player's current health and the amount of damage received, and returns the player's new health. Health can't be less than 0."""
+
+
+def combat(health, damage):
+    result = health - damage
+    return result if result > 0 else 0
+
+
+#########################################################################################################
+##################################            78            #############################################
+#########################################################################################################
+
+"""
+Determine the total number of digits in the integer (n>=0) given as input to the function. For example, 9 is a single digit, 66 has 2 digits and 128685 has 6 digits. Be careful to avoid overflows/underflows.
+
+All inputs will be valid.
+"""
+
+
+def digits(n):
+    return len(str(n))
+
+
+#########################################################################################################
+##################################            79            #############################################
+#########################################################################################################
+
+"""
+This text is now fully mutated to this character.
+
+Starting with the original text, and given a character, return the text once it has been mutated so that all of the characters in the original text have been replaced with the character.
+
+If the text or the character are empty, return an empty string.
+There will never be a case when both are empty as nothing is going on!!
+
+Note: The character is a string of length 1 or an empty string.
+
+Example
+text before = "abc"
+character   = "z"
+text after  = "zzz"
+"""
+import random
+import string
+
+
+def contamination(text, char):
+    return f'{char}' * len(text)
+
+
+test_79 = {
+    ('abc', 'z'): 'zzz',
+    ('', 'z'): '',
+    ('abc', ''): '',
+    ('_3ebzgh4', '&'): '&&&&&&&&',
+    ('//case', ' '): '      ',
+}
+
+
+def generate_random_testcase_for_contamination():
+    length = random.randint(1, 400)
+    characters = string.ascii_letters + string.digits
+    text = ''.join(random.choices(characters, k=length))
+    char = random.choice(characters)
+    expected = f'{char}' * len(text)
+    return text, char, expected
+
+
+class ContaminationTest(unittest.TestCase):
+    def test_contamination(self):
+        for (text, char), expected in test_79.items():
+            self.assertEqual(contamination(text, char), expected)
+
+    def test_random_contamination(self):
         for _ in range(50):
-            formated_date, validate_date = generate_random_date()
-            self.assertEqual(shorten_to_date(formated_date), validate_date)
+            text, char, expected = generate_random_testcase_for_contamination()
+            self.assertEqual(contamination(text, char), expected)
 
 
 if __name__ == "__main__":
