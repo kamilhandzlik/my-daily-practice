@@ -3038,16 +3038,62 @@ def generate_random_testcase_for_contamination():
     return text, char, expected
 
 
-class ContaminationTest(unittest.TestCase):
-    def test_contamination(self):
-        for (text, char), expected in test_79.items():
-            self.assertEqual(contamination(text, char), expected)
+# class ContaminationTest(unittest.TestCase):
+#     def test_contamination(self):
+#         for (text, char), expected in test_79.items():
+#             self.assertEqual(contamination(text, char), expected)
 
-    def test_random_contamination(self):
+#     def test_random_contamination(self):
+#         for _ in range(50):
+#             text, char, expected = generate_random_testcase_for_contamination()
+#             self.assertEqual(contamination(text, char), expected)
+
+
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+#########################################################################################################
+##################################            80            #############################################
+#########################################################################################################
+
+"""In Python, there is a built-in filter function that operates similarly to JS's filter. For more information on how to use this function, visit https://docs.python.org/3/library/functions.html#filter
+
+The solution would work like the following:
+
+get_even_numbers([2,4,5,6]) => [2,4,6]"""
+import random
+
+def get_even_numbers(arr):
+    return list(filter(lambda x: x % 2 == 0, arr))
+
+
+test_80 = {
+    (0, 1, 2, 3, 4, 5, 6, 7, 8, 9): [0, 2, 4, 6, 8],
+    (535, 465): [],
+    (10, 20, 40): [10, 20, 40],
+    (3, 7, 8, 9): [8],
+    (): [],
+}
+
+def generate_random_list():
+    lenght = random.randint(1, 50)
+    random_list = random.choices(range(1, 1001), k=lenght)
+    expected = [x for x in random_list if x % 2 == 0]
+    return  random_list, expected
+
+
+class GetEvenNumbersTest(unittest.TestCase):
+    def test_get_even_numbers(self):
+        for input_data, expected in test_80.items():
+            with self.subTest(input_data=input_data):
+                self.assertEqual(get_even_numbers(list(input_data)), expected)
+
+    def test_random_get_even_numbers(self):
         for _ in range(50):
-            text, char, expected = generate_random_testcase_for_contamination()
-            self.assertEqual(contamination(text, char), expected)
-
+            random_list, expected = generate_random_list()
+            with self.subTest(random_list=random_list, expected=expected):
+                self.assertEqual(get_even_numbers(random_list), expected)
 
 if __name__ == "__main__":
     unittest.main()
