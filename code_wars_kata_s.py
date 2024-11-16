@@ -3083,17 +3083,54 @@ def generate_random_list():
     return  random_list, expected
 
 
-class GetEvenNumbersTest(unittest.TestCase):
-    def test_get_even_numbers(self):
-        for input_data, expected in test_80.items():
-            with self.subTest(input_data=input_data):
-                self.assertEqual(get_even_numbers(list(input_data)), expected)
+# class GetEvenNumbersTest(unittest.TestCase):
+#     def test_get_even_numbers(self):
+#         for input_data, expected in test_80.items():
+#             with self.subTest(input_data=input_data):
+#                 self.assertEqual(get_even_numbers(list(input_data)), expected)
 
-    def test_random_get_even_numbers(self):
-        for _ in range(50):
-            random_list, expected = generate_random_list()
-            with self.subTest(random_list=random_list, expected=expected):
-                self.assertEqual(get_even_numbers(random_list), expected)
+#     def test_random_get_even_numbers(self):
+#         for _ in range(50):
+#             random_list, expected = generate_random_list()
+#             with self.subTest(random_list=random_list, expected=expected):
+#                 self.assertEqual(get_even_numbers(random_list), expected)
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+
+
+#########################################################################################################
+##################################            80            #############################################
+#########################################################################################################
+
+"""
+ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher.
+
+Create a function that takes a string and returns the string ciphered with Rot13. If there are numbers or special characters included in the string, they should be returned as they are. Only letters from the latin/english alphabet should be shifted, like in the original Rot13 "implementation".
+
+Please note that using encode is considered cheating.
+"""
+
+def rot13(message):
+    result = ''
+    for i in range(len(message)):
+        char = message[i]
+        if char == ' ':
+            result += ' '
+
+        elif char.isalpha() == False:
+            result += char
+
+        elif char.isupper():
+            result += chr((ord(char) + 13 -65) % 26 +65)
+
+        else:
+            result += chr((ord(char) + 13 - 97) % 26 + 97)
+
+    return result
+
+print(f"Coded {rot13('test')} expected 'grfg'")
+print(f"Coded {rot13('Test')} expected 'Grfg'")
+print(f"Coded {rot13('aA bB zZ 1234 *!?%')} expected 'nN oO mM 1234 *!?%'")
