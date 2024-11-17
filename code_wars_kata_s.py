@@ -39,6 +39,7 @@ See more examples in "Sample Tests:"
 Notes
 Not all paths can be made simpler. The path ["NORTH", "WEST", "SOUTH", "EAST"] is not reducible. "NORTH" and "WEST", "WEST" and "SOUTH", "SOUTH" and "EAST" are not directly opposite of each other and can't become such. Hence the result path is itself : ["NORTH", "WEST", "SOUTH", "EAST"].
 if you want to translate, please ask before translating."""
+import math
 
 
 def dir_reduc(arr):
@@ -3131,6 +3132,73 @@ def rot13(message):
 
     return result
 
-print(f"Coded {rot13('test')} expected 'grfg'")
-print(f"Coded {rot13('Test')} expected 'Grfg'")
-print(f"Coded {rot13('aA bB zZ 1234 *!?%')} expected 'nN oO mM 1234 *!?%'")
+# print(f"Coded {rot13('test')} expected 'grfg'")
+# print(f"Coded {rot13('Test')} expected 'Grfg'")
+# print(f"Coded {rot13('aA bB zZ 1234 *!?%')} expected 'nN oO mM 1234 *!?%'")
+
+
+#########################################################################################################
+##################################            81            #############################################
+#########################################################################################################
+
+"""
+Create a method that takes as input a name, city, and state to welcome a person. Note that name will be an array consisting of one or more values that should be joined together with one space between each, and the length of the name array in test cases will vary.
+
+Example:
+
+['John', 'Smith'], 'Phoenix', 'Arizona'
+This example will return the string Hello, John Smith! Welcome to Phoenix, Arizona!
+"""
+
+def say_hello(name, city, state):
+    return f"Hello, {(' ').join(name)}! Welcome to {city}, {state}!"
+
+
+#########################################################################################################
+##################################            82            #############################################
+#########################################################################################################
+
+"""
+Your task is to write function factorial.
+
+https://en.wikipedia.org/wiki/Factorial
+"""
+
+# solution with while loop
+def factorial(n):
+    if n == 0:
+        return 1
+
+    current = n
+    number = n
+
+    while current > 1:
+        current -= 1
+        number *= current
+    return number
+
+
+# solution with for loop
+def factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+
+    return result
+
+# solution with for math library
+from math import factorial
+
+def factorial(n):
+    return math.factorial(n)
+
+# solution without loops but with "funkcja rekurencyjna == recursive function"
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+def factorial(n):
+    return 1 if n <= 0 else n * factorial(n-1)
+
+
