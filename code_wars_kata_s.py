@@ -3065,6 +3065,7 @@ The solution would work like the following:
 get_even_numbers([2,4,5,6]) => [2,4,6]"""
 import random
 
+
 def get_even_numbers(arr):
     return list(filter(lambda x: x % 2 == 0, arr))
 
@@ -3077,11 +3078,12 @@ test_80 = {
     (): [],
 }
 
+
 def generate_random_list():
     lenght = random.randint(1, 50)
     random_list = random.choices(range(1, 1001), k=lenght)
     expected = [x for x in random_list if x % 2 == 0]
-    return  random_list, expected
+    return random_list, expected
 
 
 # class GetEvenNumbersTest(unittest.TestCase):
@@ -3100,8 +3102,6 @@ def generate_random_list():
 #     unittest.main()
 
 
-
-
 #########################################################################################################
 ##################################            80            #############################################
 #########################################################################################################
@@ -3114,6 +3114,7 @@ Create a function that takes a string and returns the string ciphered with Rot13
 Please note that using encode is considered cheating.
 """
 
+
 def rot13(message):
     result = ''
     for i in range(len(message)):
@@ -3125,12 +3126,13 @@ def rot13(message):
             result += char
 
         elif char.isupper():
-            result += chr((ord(char) + 13 -65) % 26 +65)
+            result += chr((ord(char) + 13 - 65) % 26 + 65)
 
         else:
             result += chr((ord(char) + 13 - 97) % 26 + 97)
 
     return result
+
 
 # print(f"Coded {rot13('test')} expected 'grfg'")
 # print(f"Coded {rot13('Test')} expected 'Grfg'")
@@ -3150,6 +3152,7 @@ Example:
 This example will return the string Hello, John Smith! Welcome to Phoenix, Arizona!
 """
 
+
 def say_hello(name, city, state):
     return f"Hello, {(' ').join(name)}! Welcome to {city}, {state}!"
 
@@ -3163,6 +3166,7 @@ Your task is to write function factorial.
 
 https://en.wikipedia.org/wiki/Factorial
 """
+
 
 # solution with while loop
 def factorial(n):
@@ -3186,11 +3190,14 @@ def factorial(n):
 
     return result
 
+
 # solution with for math library
 from math import factorial
 
+
 def factorial(n):
     return math.factorial(n)
+
 
 # solution without loops but with "funkcja rekurencyjna == recursive function"
 def factorial(n):
@@ -3198,7 +3205,81 @@ def factorial(n):
         return 1
     return n * factorial(n - 1)
 
+
 def factorial(n):
-    return 1 if n <= 0 else n * factorial(n-1)
+    return 1 if n <= 0 else n * factorial(n - 1)
 
 
+#########################################################################################################
+##################################            83            #############################################
+#########################################################################################################
+
+"""
+Description:
+Remove n exclamation marks in the sentence from left to right. n is positive integer.
+
+Examples
+remove("Hi!",1) === "Hi"
+remove("Hi!",100) === "Hi"
+remove("Hi!!!",1) === "Hi!!"
+remove("Hi!!!",100) === "Hi"
+remove("!Hi",1) === "Hi"
+remove("!Hi!",1) === "Hi!"
+remove("!Hi!",100) === "Hi"
+remove("!!!Hi !!hi!!! !hi",1) === "!!Hi !!hi!!! !hi"
+remove("!!!Hi !!hi!!! !hi",3) === "Hi !!hi!!! !hi"
+remove("!!!Hi !!hi!!! !hi",5) === "Hi hi!!! !hi"
+remove("!!!Hi !!hi!!! !hi",100) === "Hi hi hi"
+"""
+import unittest
+import random
+
+
+def remove(st, n):
+    for _ in range(n):
+        st = st.replace('!', '', 1)
+    return st
+
+
+test_83 = {
+    ("Hi!", 1): "Hi",
+    ("Hi!", 100): "Hi",
+    ("Hi!!!", 1): "Hi!!",
+    ("Hi!!!", 100): "Hi",
+    ("!Hi", 1): "Hi",
+    ("!Hi!", 1): "Hi!",
+    ("!Hi!", 100): "Hi",
+    ("!!!Hi !!hi!!! !hi", 1): "!!Hi !!hi!!! !hi",
+    ("!!!Hi !!hi!!! !hi", 3): "Hi !!hi!!! !hi",
+    ("!!!Hi !!hi!!! !hi", 5): "Hi hi!!! !hi",
+    ("!!!Hi !!hi!!! !hi", 100): "Hi hi hi",
+}
+
+
+def generate_random_remove():
+    r_char = random.choice(['Hi', 'hi'])
+    length = random.randint(1, 10)  # Ogranicz długość do testowalnych wartości
+    j = [f"{'!' * random.randint(0, 5)}{r_char}{'!' * random.randint(0, 5)}" for _ in range(length)]
+    st = ' '.join(j)
+    n = random.randint(0, 20)
+    expected = st
+    for _ in range(n):  # Wykonaj tyle samo zamian, co w funkcji
+        expected = expected.replace('!', '', 1)
+    return st, n, expected
+
+
+class TestRemove(unittest.TestCase):
+    def test_remove(self):
+        for (st, n), expected in test_83.items():
+            with self.subTest(st=st, n=n, expected=expected):
+                self.assertEqual(remove(st, n), expected)
+
+    def random_test_remove(self):
+        for _ in range(10):
+            st, n, expected = generate_random_remove()
+            with self.subTest(st=st, n=n, expected=expected):
+                self.assertEqual(remove(st, n), expected)
+
+
+if __name__ == "__main__":
+    unittest.main()
