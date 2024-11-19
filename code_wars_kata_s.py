@@ -3235,10 +3235,13 @@ import unittest
 import random
 
 
+# def remove(st, n):
+#     for _ in range(n):
+#         st = st.replace('!', '', 1)
+#     return st
+
 def remove(st, n):
-    for _ in range(n):
-        st = st.replace('!', '', 1)
-    return st
+    return st.replace('!', '', n)
 
 
 test_83 = {
@@ -3268,18 +3271,44 @@ def generate_random_remove():
     return st, n, expected
 
 
-class TestRemove(unittest.TestCase):
-    def test_remove(self):
-        for (st, n), expected in test_83.items():
-            with self.subTest(st=st, n=n, expected=expected):
-                self.assertEqual(remove(st, n), expected)
+# class TestRemove(unittest.TestCase):
+#     def test_remove(self):
+#         for (st, n), expected in test_83.items():
+#             with self.subTest(st=st, n=n, expected=expected):
+#                 self.assertEqual(remove(st, n), expected)
 
-    def random_test_remove(self):
-        for _ in range(10):
-            st, n, expected = generate_random_remove()
-            with self.subTest(st=st, n=n, expected=expected):
-                self.assertEqual(remove(st, n), expected)
+#     def random_test_remove(self):
+#         for _ in range(10):
+#             st, n, expected = generate_random_remove()
+#             with self.subTest(st=st, n=n, expected=expected):
+#                 self.assertEqual(remove(st, n), expected)
 
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+#########################################################################################################
+##################################            83            #############################################
+#########################################################################################################
+
+"""
+Don Drumphet lives in a nice neighborhood, but one of his neighbors has started to let his house go.
+Don Drumphet wants to build a wall between his house and his neighbor’s, and is trying to get the neighborhood association to pay for it.
+He begins to solicit his neighbors to petition to get the association to build the wall. Unfortunately for Don Drumphet, he cannot read very well,
+has a very limited attention span, and can only remember two letters from each of his neighbors’ names. As he collects signatures, he insists that
+his neighbors keep truncating their names until two letters remain, and he can finally read them.
+
+Your code will show Full name of the neighbor and the truncated version of the name as an array. If the number of the characters in name is less
+than or equal to two, it will return an array containing only the name as is"
+"""
+
+def who_is_paying(name):
+    if  name == '':
+        return ['']
+    elif len(name) == 2 or len(name) == 1:
+        return [name]
+    else:
+        return [name, name[0:2]]
+
+
