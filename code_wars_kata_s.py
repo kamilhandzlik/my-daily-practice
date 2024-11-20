@@ -3289,7 +3289,7 @@ def generate_random_remove():
 
 
 #########################################################################################################
-##################################            83            #############################################
+##################################            84            #############################################
 #########################################################################################################
 
 """
@@ -3303,8 +3303,9 @@ Your code will show Full name of the neighbor and the truncated version of the n
 than or equal to two, it will return an array containing only the name as is"
 """
 
+
 def who_is_paying(name):
-    if  name == '':
+    if name == '':
         return ['']
     elif len(name) == 2 or len(name) == 1:
         return [name]
@@ -3312,3 +3313,60 @@ def who_is_paying(name):
         return [name, name[0:2]]
 
 
+#########################################################################################################
+##################################            85            #############################################
+#########################################################################################################
+
+"""
+Your function takes two arguments:
+
+current father's age (years)
+current age of his son (years)
+Сalculate how many years ago the father was twice as old as his son (or in how many years he will be twice as old).
+ The answer is always greater or equal to 0, no matter if it was in the past or it is in the future.
+"""
+
+# version 1
+def twice_as_old(dad_years_old, son_years_old):
+    dad_years_old -= 2 * son_years_old
+    return dad_years_old * (-1) if dad_years_old < 0 else dad_years_old
+
+# version 2
+def twice_as_old(dad_years_old, son_years_old):
+    return abs(dad_years_old - 2 * son_years_old)
+
+
+
+test_85 = {
+    (36, 7): 22,
+    (55, 30): 5,
+    (42, 21): 0,
+    (22, 1): 20,
+    (29, 0): 29,
+    (50, 10): 30,
+    (60, 25): 10,
+}
+
+def generate_random_test_85():
+    son_years_old = random.randint(0, 60)
+    dad_years_old = random.randint(son_years_old*2, son_years_old*3)
+    expected = abs(dad_years_old - son_years_old * 2)
+    return dad_years_old, son_years_old, expected
+
+
+class Test85(unittest.TestCase):
+    def test_85(self):
+        for (dad_years_old, son_years_old), expected in test_85.items():
+            with self.subTest(dad_years_old=dad_years_old, son_years_old=son_years_old, expected=expected):
+                self.assertEqual(twice_as_old(dad_years_old, son_years_old), expected)
+
+
+    def random_test_85(self):
+        dad_years_old, son_years_old, expected = generate_random_test_85()
+        for _ in range(50):
+            with self.subTest(dad_years_old=dad_years_old, son_years_old=son_years_old, expected=expected):
+                self.assertEqual(twice_as_old(dad_years_old, son_years_old), expected)
+
+
+if __name__ == '__main__':
+    unittest.main()
