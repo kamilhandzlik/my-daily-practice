@@ -3235,10 +3235,11 @@ import unittest
 import random
 
 
-# def remove(st, n):
-#     for _ in range(n):
-#         st = st.replace('!', '', 1)
-#     return st
+def remove(st, n):
+    for _ in range(n):
+        st = st.replace('!', '', 1)
+    return st
+
 
 def remove(st, n):
     return st.replace('!', '', n)
@@ -3326,15 +3327,16 @@ current age of his son (years)
  The answer is always greater or equal to 0, no matter if it was in the past or it is in the future.
 """
 
+
 # version 1
 def twice_as_old(dad_years_old, son_years_old):
     dad_years_old -= 2 * son_years_old
     return dad_years_old * (-1) if dad_years_old < 0 else dad_years_old
 
+
 # version 2
 def twice_as_old(dad_years_old, son_years_old):
     return abs(dad_years_old - 2 * son_years_old)
-
 
 
 test_85 = {
@@ -3347,9 +3349,10 @@ test_85 = {
     (60, 25): 10,
 }
 
+
 def generate_random_test_85():
     son_years_old = random.randint(0, 60)
-    dad_years_old = random.randint(son_years_old*2, son_years_old*3)
+    dad_years_old = random.randint(son_years_old * 2, son_years_old * 3)
     expected = abs(dad_years_old - son_years_old * 2)
     return dad_years_old, son_years_old, expected
 
@@ -3393,4 +3396,101 @@ def sort_by_length(arr):
     return sorted(arr, key=len)
 
 
+#########################################################################################################
+##################################            87            #############################################
+#########################################################################################################
 
+"""
+Given a string of digits, you should replace any digit below 5 with '0' and any digit 5 and above with '1'. Return the resulting string.
+
+Note: input will never be an empty string
+"""
+
+
+# solution1
+def fake_bin(x):
+    result = ''
+    for i in x:
+        if int(i) < 5:
+            result += '0'
+        else:
+            result += '1'
+    return result
+
+
+# solution 2
+def fake_bin(x):
+    return ''.join('0' if i < '5' else '1' for i in x)
+
+
+test_87 = {
+    '0123456789': '0000011111',
+    '5132165131365':'1000011000011',
+    '65156181161': '11011010010',
+    '16516165461164164612': '01101011010010010100',
+    '10000000000': '00000000000',
+    '555555555555555': '111111111111111'
+}
+
+def generate_random_test_87():
+    lenght = random.randint(0, 400)
+    x = ''.join(str(random.randint(0, 9)) for _ in range(lenght))
+    expected = ''.join('0' if i < 5 else '1' for i in x)
+    return x, expected
+
+# class Test87(unittest.TestCase):
+#     def test_87(self):
+#         for x, expected in test_87.items():
+#             with self.subTest(input=x, expected=expected):
+#                 self.assertEqual(fake_bin(x), expected)
+
+#     def random_test_87(self):
+#         for _ in range(50):
+#             x, expected = generate_random_test_87()
+#             with self.subTest(input=x, expected=expected):
+#                 self.assertEqual(fake_bin(x), expected)
+
+#########################################################################################################
+##################################            88            #############################################
+#########################################################################################################
+
+"""
+Write a method that takes one argument as name and then greets that name, capitalized and ends with an exclamation point.
+
+Example:
+
+"riley" --> "Hello Riley!"
+"JACK"  --> "Hello Jack!"
+"""
+
+def greet(name):
+    return f"Hello {name.capitalize()}!"
+
+test_88 = {
+    'jacek': 'Jacek',
+    'ADAM': 'Adam',
+    'BiLlY': 'Billy',
+    'MaŁGoRZata': 'Małgorzata',
+    'gFHDFJjdgfhj': 'Gfhdfjjdgfhj',
+    '': '',
+}
+
+def generate_random_test_88():
+    length = random.randint(0, 100)
+    characters = string.ascii_letters
+    name = ''.join(random.choices(characters, k=length))
+    expected = f"Hello {name.capitalize()}!"
+    return name, expected
+
+class Test88(unittest.TestCase):
+    def test_88(self):
+        for name, expected_name in test_88.items():
+            expected = f"Hello {expected_name}!"
+            with self.subTest(input=name, expected=expected):
+                self.assertEqual(greet(name), expected)
+
+    def random_test_88(self):
+        for _ in range(50):
+            name, expected = generate_random_test_88()
+            with self.subTest(input=name, expected=expected):
+                self.assertEqual(greet(name), expected)
