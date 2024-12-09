@@ -3494,3 +3494,41 @@ class Test88(unittest.TestCase):
             name, expected = generate_random_test_88()
             with self.subTest(input=name, expected=expected):
                 self.assertEqual(greet(name), expected)
+
+
+
+#########################################################################################################
+##################################            89            #############################################
+#########################################################################################################
+
+"""
+Story
+Your online store likes to give out coupons for special occasions. Some customers try to cheat the system by entering invalid codes or using expired coupons.
+
+Task
+Your mission:
+Write a function called checkCoupon which verifies that a coupon code is valid and not expired.
+
+A coupon is no more valid on the day AFTER the expiration date. All dates will be passed as strings in this format: "MONTH DATE, YEAR".
+
+"""
+
+from datetime import datetime
+
+
+def validation_date(func):
+    def wrapper(*args):
+        data = list(args)
+        expiration_date = datetime.strptime(data.pop(), "%B %d, %Y")
+        current_date = datetime.strptime(data.pop(), "%B %d, %Y")
+        is_valid = current_date <= expiration_date
+        return func(entered_code = data[0], correct_code = data[1], is_valid = is_valid)
+    return wrapper
+
+
+
+@validation_date
+def check_coupon(*, entered_code: str, correct_code: str, is_valid: bool) -> bool:
+    return entered_code is correct_code and is_valid
+
+
