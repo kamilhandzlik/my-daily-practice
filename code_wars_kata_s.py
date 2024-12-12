@@ -3425,18 +3425,20 @@ def fake_bin(x):
 
 test_87 = {
     '0123456789': '0000011111',
-    '5132165131365':'1000011000011',
+    '5132165131365': '1000011000011',
     '65156181161': '11011010010',
     '16516165461164164612': '01101011010010010100',
     '10000000000': '00000000000',
     '555555555555555': '111111111111111'
 }
 
+
 def generate_random_test_87():
     lenght = random.randint(0, 400)
     x = ''.join(str(random.randint(0, 9)) for _ in range(lenght))
     expected = ''.join('0' if i < 5 else '1' for i in x)
     return x, expected
+
 
 # class Test87(unittest.TestCase):
 #     def test_87(self):
@@ -3463,8 +3465,10 @@ Example:
 "JACK"  --> "Hello Jack!"
 """
 
+
 def greet(name):
     return f"Hello {name.capitalize()}!"
+
 
 test_88 = {
     'jacek': 'Jacek',
@@ -3475,12 +3479,14 @@ test_88 = {
     '': '',
 }
 
+
 def generate_random_test_88():
     length = random.randint(0, 100)
     characters = string.ascii_letters
     name = ''.join(random.choices(characters, k=length))
     expected = f"Hello {name.capitalize()}!"
     return name, expected
+
 
 class Test88(unittest.TestCase):
     def test_88(self):
@@ -3494,7 +3500,6 @@ class Test88(unittest.TestCase):
             name, expected = generate_random_test_88()
             with self.subTest(input=name, expected=expected):
                 self.assertEqual(greet(name), expected)
-
 
 
 #########################################################################################################
@@ -3522,9 +3527,9 @@ def validation_date(func):
         expiration_date = datetime.strptime(data.pop(), "%B %d, %Y")
         current_date = datetime.strptime(data.pop(), "%B %d, %Y")
         is_valid = current_date <= expiration_date
-        return func(entered_code = data[0], correct_code = data[1], is_valid = is_valid)
-    return wrapper
+        return func(entered_code=data[0], correct_code=data[1], is_valid=is_valid)
 
+    return wrapper
 
 
 @validation_date
@@ -3546,11 +3551,12 @@ Easy case is when the list is made up of only positive numbers and the maximum s
 Empty list is considered to have zero greatest sum. Note that the empty list or array is also a valid sublist/subarray.
 """
 
+
 def max_sequence(arr):
     sums = []
     for j, e in enumerate(arr):
         sums.append(e)
-        for i in range(j+1, len(arr)):
+        for i in range(j + 1, len(arr)):
             e += arr[i]
             sums.append(e)
     if all(i < 0 for i in arr) or not sums:
@@ -3559,3 +3565,88 @@ def max_sequence(arr):
         return max(sums)
 
 
+#########################################################################################################
+##################################            90            #############################################
+#########################################################################################################
+
+"""
+Your Job
+Find the sum of all multiples of n below m
+
+Keep in Mind
+n and m are natural numbers (positive integers)
+m is excluded from the multiples
+Examples
+sumMul(2, 9)   ==> 2 + 4 + 6 + 8 = 20
+sumMul(3, 13)  ==> 3 + 6 + 9 + 12 = 30
+sumMul(4, 123) ==> 4 + 8 + 12 + ... = 1860
+sumMul(4, -7)  ==> "INVALID"
+"""
+import unittest
+
+# Solution 1
+def sum_mul(n, m):
+    if n <= 0 or m <= 0:
+        return 'INVALID'
+    result = 0
+    current = 0
+    while current < m:
+        current += n
+        result += current
+        if current >= m:
+            return result - current
+        elif result <= 0:
+            return 'INVALID'
+    return result
+
+
+# Solution 2
+def sum_mul(n, m):
+    if n <= 0 or m <= 0:
+        return 'INVALID'
+    count = (m - 1) // n
+    return n * count * (count + 1) // 2
+
+
+test_cases_90 = {
+    (0, 9): 'INVALID',
+    (2, 9): 20,
+    (4, -7): 'INVALID',
+    (4, 123): 1860,
+    (123, 4567): 86469,
+    (2, 10): 20,  # Should not include m
+    (2, 2): 0,  # Should work for n == m
+    (7, 7): 0,  # Should work for n == m
+    (7, 2): 0,  # Should work for n > m
+    (21, 3): 0,  # Should work for n > m
+    (0, 2): 'INVALID',  # Zero is not a natural number (for this kata at least)
+    (2, 0): 'INVALID',  # Zero is not a natural number (for this kata at least)
+    (4, -7): 'INVALID',  # Negative numbers
+    (-7, 4): 'INVALID',  # Negative numbers
+}
+
+
+def generate_random_test_90():
+    n = random.randint(1, 1000)
+    m = random.randint(1, 1000)
+    if n >= m:
+        expected = 0
+    else:
+        expected = sum(x for x in range(n, m, n))
+    return n, m, expected
+
+class Test90(unittest.TestCase):
+    def test_90(self):
+        for inp, expected in test_cases_90.items():
+            n, m = inp
+            with self.subTest(input=inp, expected=expected):
+                self.assertEqual(sum_mul(n, m), expected)
+
+    def test_random(self):
+        for _ in range(100):
+            n, m, expected = generate_random_test_90()
+            with self.subTest(n=n, m=m, expected=expected):
+                self.assertEqual(sum_mul(n, m), expected)
+
+if __name__ == '__main__':
+    unittest.main
