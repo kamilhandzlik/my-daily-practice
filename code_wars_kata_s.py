@@ -3626,27 +3626,58 @@ test_cases_90 = {
 }
 
 
-def generate_random_test_90():
-    n = random.randint(1, 1000)
-    m = random.randint(1, 1000)
-    if n >= m:
-        expected = 0
-    else:
-        expected = sum(x for x in range(n, m, n))
-    return n, m, expected
+# def generate_random_test_90():
+#     n = random.randint(1, 1000)
+#     m = random.randint(1, 1000)
+#     if n >= m:
+#         expected = 0
+#     else:
+#         expected = sum(x for x in range(n, m, n))
+#     return n, m, expected
 
-class Test90(unittest.TestCase):
-    def test_90(self):
-        for inp, expected in test_cases_90.items():
-            n, m = inp
-            with self.subTest(input=inp, expected=expected):
-                self.assertEqual(sum_mul(n, m), expected)
+# class Test90(unittest.TestCase):
+#     def test_90(self):
+#         for inp, expected in test_cases_90.items():
+#             n, m = inp
+#             with self.subTest(input=inp, expected=expected):
+#                 self.assertEqual(sum_mul(n, m), expected)
 
-    def test_random(self):
-        for _ in range(100):
-            n, m, expected = generate_random_test_90()
-            with self.subTest(n=n, m=m, expected=expected):
-                self.assertEqual(sum_mul(n, m), expected)
+#     def test_random(self):
+#         for _ in range(100):
+#             n, m, expected = generate_random_test_90()
+#             with self.subTest(n=n, m=m, expected=expected):
+#                 self.assertEqual(sum_mul(n, m), expected)
 
-if __name__ == '__main__':
-    unittest.main
+# if __name__ == '__main__':
+#     unittest.main
+
+
+#########################################################################################################
+##################################            91            #############################################
+#########################################################################################################
+
+"""
+Given a mixed array of number and string representations of integers, add up the non-string integers and subtract the total of the string integers.
+
+Return as a number.
+"""
+
+
+def div_con(x):
+    str_int = []
+    int_int = []
+    for i in x:
+        if isinstance(i, str):
+            str_int.append(int(i))
+        else:
+            int_int.append(i)
+    sum_si = sum(int(str_int))
+    sum_ii = sum(int_int)
+
+    return sum_ii - sum_si
+
+print(div_con(9, 3, '7', '3'))
+
+
+# if __name__ == '__main__':
+#     unittest.main
