@@ -26,6 +26,22 @@ def prime_factors(n):
     return result
 
 # Solution 2
+import math
+
+def prime_factors(n):
+    result = ""
+    # Sprawdź dzielniki zaczynając od 2
+    for i in range(2, int(math.sqrt(n)) + 1):
+        count = 0
+        while n % i == 0:
+            count += 1
+            n //= i
+        if count > 0:
+            result += f"({i}{f'**{count}' if count > 1 else ''})"
+    # Jeśli po pętli pozostała liczba większa niż 1, to jest liczbą pierwszą
+    if n > 1:
+        result += f"({n})"
+    return result
 
 
 
