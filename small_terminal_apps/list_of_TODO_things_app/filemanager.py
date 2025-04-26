@@ -1,4 +1,5 @@
 import os
+from menu import Menu
 
 
 class FileManager:
@@ -24,19 +25,26 @@ class FileChooser:
 
     @staticmethod
     def display_files():
+        menu = Menu()
         base_dir = os.path.dirname(os.path.abspath(__file__))
+        show_menu = True
         files = [f for f in os.listdir(base_dir) if f.endswith(".txt")]
+
         if not files:
             print("\033[31mNo .txt files found in the current directory.\033[0m\n")
         else:
+            if show_menu:
+                menu.display_show()
             print("\033[34mAvailable .txt files:\033[0m\n")
             for idx, file in enumerate(files, 1):
                 print(f"\033[36m{idx}. {file}\033[0m")
+            show_menu = False
         return files
 
     @staticmethod
     def choose_file():
         files = FileChooser.display_files()
+
         if not files:
             return None
 

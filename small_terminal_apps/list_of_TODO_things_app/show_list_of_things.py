@@ -16,14 +16,21 @@ class ShowListOfThings:
             print("\033[31mNo file selected. Exiting...\033[0m")
             return
 
-        menu.display_show()
-        user_choice = str(input("Chooce option by entering number: "))
+        menu.display_whats_in_the_file()
+        user_choice = input(
+            "\033[33mChoose option by entering number (or 'q' to quit): \033[0m\n"
+        ).strip()
+
+        show_menu = False
 
         while True:
-            menu.display_show()
+            if show_menu:
+                menu.display_show()
 
             if user_choice == "1":
+                menu.display_whats_in_the_file()
                 open_file.open_file_to_display()
+
             elif user_choice.lower() == "q":
                 print("\033[32mReturning to main menu...\033[0m")
                 break
@@ -32,7 +39,9 @@ class ShowListOfThings:
                     f"\033[31mYou entered {user_choice}! That isn't correct value.\nChoose correct value between 1, 2\033[0m]"
                 )
 
-            user_choice = str(input("Chooce option by entering number: "))
+            user_choice = input(
+                "\033[33mChoose option by entering number (or 'q' to quit): \033[0m\n"
+            ).strip()
 
 
 if __name__ == "__main__":

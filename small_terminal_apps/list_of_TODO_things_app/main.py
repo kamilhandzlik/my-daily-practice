@@ -6,7 +6,9 @@ class MainLoop:
     def __init__(self):
         menu = Menu()
         menu.display_main()
-        user_choice = str(input("Chooce option by entering number: "))
+        user_choice = input(
+            "\033[33mChoose option by entering number (or 'q' to quit): \033[0m\n"
+        ).strip()
 
         while True:
             if user_choice == "1":
@@ -28,7 +30,9 @@ class MainLoop:
                 )
 
             menu.display_main()
-            user_choice = str(input("Chooce option by entering number: "))
+            user_choice = input(
+                "\033[33mChoose option by entering number (or 'q' to quit): \033[0m\n"
+            ).strip()
 
 
 if __name__ == "__main__":
