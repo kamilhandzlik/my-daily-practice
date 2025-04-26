@@ -56,5 +56,18 @@ def decode_morse(morse_code):
 
     return ' '.join(result)
 
+# Slighlty optimised solution
+def decode_morse(morse_code):
+    morse_letters = morse_code.strip().split('   ')
+    result = []
+
+    for word in morse_letters:
+        decoded_word = ''
+        for i in word.split(' '):
+            if i:  # zabezpieczenie przed pustym stringiem
+                decoded_word += MORSE_CODE[i]
+        result.append(decoded_word)
+
+    return ' '.join(result)
 
 print(f"result: {decode_morse('.... . -.--   .--- ..- -.. .')} expected: 'HEY JUDE'")
