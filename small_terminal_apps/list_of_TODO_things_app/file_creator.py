@@ -1,14 +1,19 @@
 import os
 from filemanager import FileChooser
+from interface_elements import InterfaceElements
 
 
 class FileCreator:
     def __init__(self, base_dir="."):
         self.base_dir = base_dir
+        self.interface = InterfaceElements()
 
     def create_new_file(self):
+        self.interface.display_separator()
+        self.interface.display_add_file_header()
+        self.interface.display_separator()
         print("\033[34mChecking existing .txt files in the directory...\033[0m\n")
-        FileChooser.display_files()
+        FileChooser.display_files_simple()
 
         print(
             "\033[33mEnter the name of the new file (without extension) or 'q' to cancel:\033[0m"

@@ -1,13 +1,18 @@
 import os
 from filemanager import FileChooser
+from interface_elements import InterfaceElements
 
 
 class FileRenamer:
     def __init__(self):
         self.base_dir = os.path.dirname(os.path.abspath(__file__))
+        self.interface = InterfaceElements()
 
     def rename_file(self):
-        files = FileChooser.display_files()
+        self.interface.display_separator()
+        self.interface.display_rename_file_header()
+        self.interface.display_separator()
+        files = FileChooser.display_files_simple()
 
         if not files:
             print("\033[31mNo available files to rename.\033[0m")

@@ -120,6 +120,24 @@ class FileChooser:
         return files
 
     @staticmethod
+    def display_files_simple(base_dir="."):
+        files = [f for f in os.listdir(base_dir) if f.endswith(".txt")]
+
+        if not files:
+            print("\033[31mNo .txt files found in the current directory.\033[0m\n")
+        else:
+            print("\033[34mAvailable .txt files:\033[0m\n")
+            for idx, file in enumerate(files, 1):
+                print(f"\033[36m{idx}. {file}\033[0m")
+        return files
+
+    @staticmethod
+    def _list_txt_files():
+        files = [f for f in os.listdir() if f.endswith(".txt")]
+        for index, file in enumerate(files, start=1):
+            print(f"{index}. {file}")
+
+    @staticmethod
     def choose_file():
         files = FileChooser.display_files()
 

@@ -1,14 +1,19 @@
 import os
 from filemanager import FileChooser
+from interface_elements import InterfaceElements
 
 
 class FileDeleter:
     def __init__(self, base_dir="."):
         self.base_dir = base_dir
+        self.interface = InterfaceElements()
 
     def delete_file(self):
+        self.interface.display_separator()
+        self.interface.display_delete_file_header()
+        self.interface.display_separator()
         print("\033[34mChecking existing .txt files in the directory...\033[0m\n")
-        list_of_files = FileChooser.display_files()
+        list_of_files = FileChooser.display_files_simple()
 
         if not list_of_files:
             print("\033[31mThere are no txt files to delete. Exiting...\033[0m")
