@@ -47,6 +47,54 @@ class FileManager:
         except FileNotFoundError:
             print("\033[31mFile not found. Please make sure the file exists.\033[0m\n")
 
+    def delete_from_file(self):
+        try:
+            file_path = os.path.join(self.base_dir, self.filename)
+            with open(file_path, "r") as file:
+                things = file.readlines()
+
+            if not things:
+                print("\033[31mThe file is empty. Nothing to delete.\033[0m\n")
+                return
+
+            print("\033[34mCurrent file contents:\033[0m")
+            for idx, thing in enumerate(things, start=1):
+                print(f"\33[33m{idx}. {thing.strip()}\33[0m")
+
+            while True:
+                user_choice = input(
+                    "\033[33mEnter the number of the item to delete (or 'q' to quit): \033[0m\n"
+                ).strip()
+
+                if user_choice.lower() == "q":
+                    print("\033[32mExiting...\033[0m\n")
+                    return
+
+                if user_choice.isdigit() and 1 <= int(user_choice) <= len(things):
+                    index_to_delete = int(user_choice) - 1
+                    deleted_item = things.pop(index_to_delete).strip()
+                    print(f"\033[32mDeleting '{deleted_item}' from the file.\033[0m")
+                    break
+                else:
+                    print(
+                        f"\033[31mInvalid choice: {user_choice}. Please choose a valid number.\033[0m\n"
+                    )
+            print(f"Modified contents to save: {things}")
+            print(f"Saving changes to: {file_path}")
+
+            with open(file_path, "w") as file:
+                file.writelines(things)
+            print("\033[32mFile updated successfully.\033[0m\n")
+
+            with open(file_path, "r") as file:
+                print(f"File contents after save: {file.read()}")
+
+        except FileNotFoundError:
+            print("\033[31mFile not found. Please make sure the file exists.\033[0m\n")
+            return
+        except Exception as e:
+            print(f"\033[31mAn unexpected error occurred: {e}\033[0m\n")
+
 
 class FileChooser:
     def __init__(self, filename):

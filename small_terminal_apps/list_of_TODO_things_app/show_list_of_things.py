@@ -8,9 +8,8 @@ class ShowListOfThings:
 
     def display_list_of_things_todo(self):
         menu = Menu()
-
-        # Najpierw wybierz plik
         file_name = FileChooser.choose_file()
+
         if not file_name:
             print("\033[31mNo file selected. Exiting...\033[0m")
             return
@@ -19,23 +18,17 @@ class ShowListOfThings:
         print(f"\033[32mYou chose: {file_name}\033[0m\n")
 
         while True:
-            # Wyświetl prawdziwe menu operacji na pliku
             menu.display_whats_in_the_file()
             user_choice = input(
                 "\033[33mChoose option by entering number (or 'q' to quit): \033[0m\n"
             ).strip()
 
             if user_choice == "1":
-
                 open_file.open_file_to_display()
-
             elif user_choice == "2":
                 open_file.add_to_file()
-
             elif user_choice == "3":
-                print("\033[32mDeleting from file...\033[0m")
-                # Tutaj później dodasz metodę delete_from_file()
-
+                open_file.delete_from_file()
             elif user_choice.lower() == "q":
                 print("\033[32mReturning to main menu...\033[0m")
                 break
