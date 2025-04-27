@@ -17,6 +17,36 @@ class FileManager:
         except FileNotFoundError:
             print("\033[31mFile not found. Please make sure the file exists.\033[0m\n")
 
+    def add_to_file(self):
+        try:
+            file_path = os.path.join(self.base_dir, self.filename)
+            with open(file_path, "a+") as file:
+                # showing whats in the file
+                file.seek(0)
+                print("\033[34mCurrent file contents:\033[0m")
+                print(file.read())
+
+                # adding new thing to the file
+                print("\033[33mEnter q to abort adding new thing.\n\033[0m")
+                new_thing = str(
+                    input("\033[33mEnter new thing to add: \033[0m\n")
+                ).strip()
+
+                if new_thing.lower() == "q":
+                    print("\033[32mExiting...\033[0m\n")
+                    return
+
+                if new_thing:
+                    file.write(new_thing + "\n")
+                    print(f"\033[32mAdded '{new_thing}' to the file.\033[0m")
+                else:
+                    print(
+                        "\033[31mYou entered empty string. Please enter a valid thing.\033[0m\n"
+                    )
+
+        except FileNotFoundError:
+            print("\033[31mFile not found. Please make sure the file exists.\033[0m\n")
+
 
 class FileChooser:
     def __init__(self, filename):

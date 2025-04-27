@@ -6,6 +6,7 @@ class Menu:
         print("\033[35m2. Add todo file.\033[0m")
         print("\033[35m3. delete todo file.\033[0m")
         print("\033[35m4. Change name of todo file.\033[0m")
+        print("\033[35m5. Create file.\033[0m]")
         print("\033[35m5. Press q to exit application.\033[0m")
         print(
             "\033[35mChose option by pressing one of the options 1, 2, 3, 4, 5\033[0m"
@@ -13,6 +14,7 @@ class Menu:
         print("\n")
 
     def display_show(self):
+        print("\033[33m[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[\033[0m")
         print(
             "\033[35m1. Choose one of the files by typing their index number example 1: .\033[0m"
         )
@@ -20,12 +22,16 @@ class Menu:
         print("\n")
 
     def display_whats_in_the_file(self):
+        print("\033[33m[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[\033[0m")
         print("\033[35m\n1. Display whats in the file.\033[0m")
-        print("\033[35m2. Press q to go to main menu\033[0m\n")
+        print("\033[35m2. Display content of file and ADD new things to file.\033[0m")
+        print("\033[35m3. Display content of file and DELETE from file.\033[0m")
+        print("\033[35m3. Press q to go to main menu\033[0m\n")
         print("\033[35mChose option by pressing one of the options 1, q\033[0m")
         print("\n")
 
     def display_add(self):
+        print("\033[33m[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[\033[0m")
         print("\033[35m1. Display whats in the file.\033[0m")
         print("\033[35m1. Add to file.\033[0m")
         print("\033[35m2. Press q to go to main menu\033[0m\n")
