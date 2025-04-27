@@ -1,6 +1,8 @@
 from menu import Menu
 from show_list_of_things import ShowListOfThings
 from file_creator import FileCreator
+from file_deleter import FileDeleter
+from file_renamer import FileRenamer
 
 
 class MainLoop:
@@ -20,10 +22,12 @@ class MainLoop:
                 create_file = FileCreator()
                 create_file.create_new_file()
             elif user_choice == "3":
-                print("\nYou selected option 3.")
+                delete_file = FileDeleter()
+                delete_file.delete_file()
             elif user_choice == "4":
-                print("\nYou selected option 4.")
-            elif user_choice.lower() == "q":
+                rename_file = FileRenamer()
+                rename_file.rename_file()
+            elif user_choice.lower() == "q" or user_choice == "5":
                 print("\033[32mExiting the application...\033[0m")
                 break
             else:
