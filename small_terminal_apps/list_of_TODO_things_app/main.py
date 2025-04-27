@@ -1,5 +1,6 @@
 from menu import Menu
 from show_list_of_things import ShowListOfThings
+from file_creator import FileCreator
 
 
 class MainLoop:
@@ -16,7 +17,8 @@ class MainLoop:
                 show_list = ShowListOfThings(things=None)
                 show_list.display_list_of_things_todo()
             elif user_choice == "2":
-                print("\nYou selected option 2.")
+                create_file = FileCreator()
+                create_file.create_new_file()
             elif user_choice == "3":
                 print("\nYou selected option 3.")
             elif user_choice == "4":
