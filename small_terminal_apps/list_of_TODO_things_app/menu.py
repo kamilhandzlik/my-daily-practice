@@ -41,7 +41,7 @@ class Menu:
         print("\033[35m\n1. Display whats in the file.\033[0m")
         print("\033[35m2. Display content of file and ADD new things to file.\033[0m")
         print("\033[35m3. Display content of file and DELETE from file.\033[0m")
-        print("\033[35m3. Press q to go to main menu\033[0m\n")
+        print("\033[35m4. Press q to go to main menu\033[0m\n")
         print("\033[35mChose option by pressing one of the options 1, 2, 3, q\033[0m")
         self.interface.display_separator()
         print("\n")
