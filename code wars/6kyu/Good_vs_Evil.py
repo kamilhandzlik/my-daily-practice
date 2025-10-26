@@ -75,5 +75,21 @@ def good_vs_evil(good, evil):
         "Battle Result: No victor on this battle field"
     )
 
+# Solution 3
+def good_vs_evil(good, evil):
+    g_worth = [1, 2, 3, 3, 4, 10]
+    e_worth = [1, 2, 2, 2, 3, 5, 10]
+
+    total_good = sum(int(x) * y for x, y in zip(good.split(), g_worth))
+    total_evil = sum(int(x) * y for x, y in zip(evil.split(), e_worth))
+
+    if total_good > total_evil:
+        return "Battle Result: Good triumphs over Evil"
+    elif total_evil > total_good:
+        return "Battle Result: Evil eradicates all trace of Good"
+    else:
+        return "Battle Result: No victor on this battle field"
+
+
 
 print(good_vs_evil('1 1 1 1 1 1', '1 1 1 1 1 1 1'))
