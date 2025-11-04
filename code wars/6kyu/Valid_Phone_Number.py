@@ -16,9 +16,15 @@ Examples:
 
 import re
 
+
+# Solution 1
 def valid_phone_number(phone_number):
     pattern = r'^\(\d{3}\) \d{3}-\d{4}$'
     return bool(re.match(pattern, phone_number))
+
+# Solution 2
+def validPhoneNumber(phone_number):
+    return bool(re.match(r"^(\([0-9]+\))? [0-9]+-[0-9]+$", phone_number))
 
 
 print(valid_phone_number("(123) 456-7890"))
