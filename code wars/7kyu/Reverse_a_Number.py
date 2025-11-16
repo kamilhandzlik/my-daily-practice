@@ -1,0 +1,32 @@
+"""
+Reverse a Number
+
+Given a number, write a function to output its reverse digits. (e.g. given 123 the answer is 321)
+
+Numbers should preserve their sign; i.e. a negative number should still be negative when reversed.
+
+Examples
+ 123 ->  321
+-456 -> -654
+1000 ->    1
+"""
+
+
+# Solution 1
+def reverse_number(n):
+    if n == 0:
+        return 0
+    elif n < 0:
+        return int('-' + str(n)[1:][::-1])
+    elif str(n)[0][::-1].startswith('0'):
+        return int(str(n).lstrip('0'))
+    else:
+        return int(str(n)[::-1])
+
+
+# Solution 2
+def reverse_number(n):
+    return int(str(abs(n))[::-1]) * (-1 if n < 0 else 1)
+
+
+print(reverse_number(1230000))
