@@ -10,9 +10,14 @@ Allowed characters are uppercase / lowercase latin letters and digits from 0 to 
 No whitespaces / underscore
 
 """
-
+# Solution 1
 import re
 
 
 def alphanumeric(password: str) -> bool:
     return bool(re.fullmatch(r"[A-Za-z0-9]+", password))
+
+
+# Solution 2
+def alphanumeric(string):
+    return string.isalnum()
