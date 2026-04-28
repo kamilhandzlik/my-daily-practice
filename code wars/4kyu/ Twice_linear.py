@@ -19,7 +19,7 @@ dbl_linear(10) should return 22
 Note:
 Focus attention on efficiency
 
-g964
+author of this kata: g964
 https://www.codewars.com/kata/5672682212c8ecf83e000050/train/python
 """
 
@@ -44,3 +44,4 @@ def dbl_linear(n):
             j += 1
 
     return u[n]
+
